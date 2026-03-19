@@ -4,6 +4,7 @@ import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { PravProvider } from "@/components/assistant/PravProvider";
+import SplashCursor from "@/components/ui/SplashCursor";
 
 export const metadata: Metadata = {
   title: "Praverse Tech - Bringing Innovations to Market",
@@ -26,12 +27,13 @@ export default function RootLayout({
         <link rel="icon" href="/logo%20rotate.png" sizes="192x192" />
         <link rel="icon" href="/logo%20rotate.png" sizes="512x512" />
         <link rel="apple-touch-icon" href="/logo%20rotate.png" />
-        <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;700;900&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Ranga:wght@400;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased dark">
         <PravProvider>
+          <SplashCursor />
           <div className="flex flex-col min-h-screen">
             <Header />
             <main className="flex-1">{children}</main>

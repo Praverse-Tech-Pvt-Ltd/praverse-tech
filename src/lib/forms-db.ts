@@ -73,14 +73,15 @@ function normalizeConnectionString(rawConnectionString: string) {
   return url.toString();
 }
 
-function getPool() {
+function getPool(): Pool | null {
   if (pool) {
     return pool;
   }
 
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) {
-    throw new Error("DATABASE_URL is not configured.");
+    console.warn("DATABASE_URL is not configured. Falling back to local/mock database state.");
+    return null;
   }
 
   pool = new Pool({
@@ -94,6 +95,7 @@ let schemaReadyPromise: Promise<void> | null = null;
 
 async function ensureSchema() {
   const db = getPool();
+  if (!db) return;
 
   await db.query(`
     CREATE TABLE IF NOT EXISTS newsletter_subscribers (
@@ -206,8 +208,11 @@ async function ensureSchemaReady() {
 }
 
 export async function saveNewsletterSubscriber(email: string) {
+  const db = getPool();
+  if (!db) return;
+
   await ensureSchemaReady();
-  await getPool().query(
+  await db.query(
     `
       INSERT INTO newsletter_subscribers (email)
       VALUES ($1)
@@ -218,8 +223,11 @@ export async function saveNewsletterSubscriber(email: string) {
 }
 
 export async function saveWaitlistSubmission(data: WaitlistSubmission) {
+  const db = getPool();
+  if (!db) return;
+
   await ensureSchemaReady();
-  await getPool().query(
+  await db.query(
     `
       INSERT INTO hm_waitlist_submissions (name, email, organization, role, use_case, consent)
       VALUES ($1, $2, $3, $4, $5, $6)
@@ -229,8 +237,11 @@ export async function saveWaitlistSubmission(data: WaitlistSubmission) {
 }
 
 export async function saveBriefingRequest(data: BriefingSubmission) {
+  const db = getPool();
+  if (!db) return;
+
   await ensureSchemaReady();
-  await getPool().query(
+  await db.query(
     `
       INSERT INTO hm_briefing_requests (name, email, organization, website, purpose, region, consent)
       VALUES ($1, $2, $3, $4, $5, $6, $7)
@@ -248,8 +259,11 @@ export async function saveBriefingRequest(data: BriefingSubmission) {
 }
 
 export async function saveMediaRequest(data: MediaSubmission) {
+  const db = getPool();
+  if (!db) return;
+
   await ensureSchemaReady();
-  await getPool().query(
+  await db.query(
     `
       INSERT INTO hm_media_requests (name, email, publication, article_link, embargo_ack)
       VALUES ($1, $2, $3, $4, $5)
@@ -259,8 +273,11 @@ export async function saveMediaRequest(data: MediaSubmission) {
 }
 
 export async function saveBlogIdeas(topic: string, ideas: string[]) {
+  const db = getPool();
+  if (!db) return;
+
   await ensureSchemaReady();
-  await getPool().query(
+  await db.query(
     `
       INSERT INTO blog_idea_generations (topic, ideas)
       VALUES ($1, $2::jsonb)
@@ -270,8 +287,11 @@ export async function saveBlogIdeas(topic: string, ideas: string[]) {
 }
 
 export async function saveInnovationPitch(data: InnovationSubmission) {
+  const db = getPool();
+  if (!db) return;
+
   await ensureSchemaReady();
-  await getPool().query(
+  await db.query(
     `
       INSERT INTO innovation_pitches (name, email, project_name, pitch, description, stage, ip_ack)
       VALUES ($1, $2, $3, $4, $5, $6, $7)
@@ -289,8 +309,11 @@ export async function saveInnovationPitch(data: InnovationSubmission) {
 }
 
 export async function saveContactSubmission(data: ContactSubmission) {
+  const db = getPool();
+  if (!db) return;
+
   await ensureSchemaReady();
-  await getPool().query(
+  await db.query(
     `
       INSERT INTO contact_submissions (name, email, company, message, interest)
       VALUES ($1, $2, $3, $4, $5)
@@ -334,8 +357,11 @@ const fallbackTimeline: HealthmateTimelineItem[] = [
 ];
 
 export async function getHealthmateFaq(): Promise<HealthmateFaqItem[]> {
+  const db = getPool();
+  if (!db) return fallbackFaq;
+
   await ensureSchemaReady();
-  const result = await getPool().query<HealthmateFaqItem>(
+  const result = await db.query<HealthmateFaqItem>(
     `
       SELECT question, answer
       FROM healthmate_faq
@@ -353,8 +379,11 @@ export async function getHealthmateFaq(): Promise<HealthmateFaqItem[]> {
 export async function getHealthmateTimeline(): Promise<
   HealthmateTimelineItem[]
 > {
+  const db = getPool();
+  if (!db) return fallbackTimeline;
+
   await ensureSchemaReady();
-  const result = await getPool().query<HealthmateTimelineItem>(
+  const result = await db.query<HealthmateTimelineItem>(
     `
       SELECT date_text AS date, description
       FROM healthmate_timeline

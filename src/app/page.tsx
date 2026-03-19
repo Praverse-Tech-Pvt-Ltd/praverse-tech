@@ -3,7 +3,6 @@ import React from 'react';
 import { Hero } from '@/components/home/Hero';
 import { Vision } from '@/components/home/Vision';
 import { Domains } from '@/components/home/Domains';
-import { Cta } from '@/components/home/Cta';
 import { getBlogPosts, type Post } from '@/lib/blog';
 import { InnovationTimeline } from '@/components/home/InnovationTimeline';
 import { ResearchPublications } from '@/components/home/ResearchPublications';
@@ -29,7 +28,6 @@ export default function Home() {
         <InnovationTimeline />
         <ResearchPublications />
         <Collaborations />
-        <Cta />
       </main>
     </div>
   );

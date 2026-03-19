@@ -17,6 +17,7 @@ import {
   AnimatedItem,
   AnimatedSection,
 } from "@/components/common/AnimatedSection";
+import { ProximityText } from "@/components/ui/ProximityText";
 
 interface InsightsProps {
   founderPost?: Post;
@@ -39,8 +40,10 @@ export function Insights({ founderPost, otherPosts }: InsightsProps) {
             Insights & Research
           </h2>
           <p className="mt-4 text-lg text-muted-foreground md:text-xl">
-            From our blog, the latest in AI, robotics, and industry
-            transformation.
+            <ProximityText>
+              From our blog, the latest in AI, robotics, and industry
+              transformation.
+            </ProximityText>
           </p>
         </AnimatedItem>
 

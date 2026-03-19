@@ -6,6 +6,7 @@ import {
 } from "@/components/common/AnimatedSection";
 import { HeartPulse, Crosshair, TrendingUp } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { ProximityText } from "@/components/ui/ProximityText";
 
 const visionImage = PlaceHolderImages.find((p) => p.id === "lab-vision-ai");
 
@@ -37,17 +38,17 @@ export function Vision() {
             <h2 className="prose-heading">Our Manifesto</h2>
             <div className="space-y-4">
               <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
-                AI should not replace people — it should amplify human
-                capability.
+                <ProximityText>
+                  AI should not replace people — it should amplify human
+                  capability.
+                </ProximityText>
               </p>
               <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-                We fuse deep learning, robotics, and ethical intelligence to
-                deliver systems that enhance{" "}
-                <span className="text-primary font-semibold">precision</span>,{" "}
-                <span className="text-primary font-semibold">compassion</span>,
-                and{" "}
-                <span className="text-primary font-semibold">efficiency</span>{" "}
-                for tomorrow's industries.
+                <ProximityText>
+                  We fuse deep learning, robotics, and ethical intelligence to
+                  deliver systems that enhance precision, compassion,
+                  and efficiency for tomorrow's industries.
+                </ProximityText>
               </p>
             </div>
           </AnimatedItem>

@@ -7,6 +7,7 @@ import { DOMAINS } from '@/lib/data';
 import MagicBento from './MagicBento';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ProximityText } from '@/components/ui/ProximityText';
 
 export function Domains() {
   return (
@@ -22,7 +23,9 @@ export function Domains() {
             Our Core Innovation Domains
           </h2>
           <p className="mt-6 text-base text-muted-foreground md:text-lg leading-relaxed">
-            Multi-disciplinary expertise pushing the boundaries of intelligent systems across regulated industries and advanced robotics.
+            <ProximityText>
+              Multi-disciplinary expertise pushing the boundaries of intelligent systems across regulated industries and advanced robotics.
+            </ProximityText>
           </p>
         </AnimatedItem>
 

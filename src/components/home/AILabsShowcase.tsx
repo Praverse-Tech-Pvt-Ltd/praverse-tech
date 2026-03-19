@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
 import {
   AnimatedItem,
@@ -8,9 +8,10 @@ import {
 import { Card, CardContent } from "../ui/card";
 import { Eye, Brain, Cpu, Orbit } from "lucide-react";
 import Image from "next/image";
-// Using a lightweight controlled tabs implementation for reliability
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { cn } from "@/lib/utils";
+import ScrollStack, { ScrollStackItem } from "@/components/ui/ScrollStack";
+import { ProximityText } from "@/components/ui/ProximityText";
 
 const tabs = [
   {
@@ -59,11 +60,13 @@ export function AILabsShowcase() {
       amount={0.3}
     >
       <div className="container">
-        <AnimatedItem className="mx-auto mb-20 max-w-2xl text-center">
+        <AnimatedItem className="mx-auto mb-12 md:mb-20 max-w-2xl text-center">
           <h2 className="prose-heading">AI Labs & Experiments</h2>
-          <p className="mt-6 text-base text-muted-foreground md:text-lg leading-relaxed">
-            Experimental research and development across vision, language, edge
-            computing, and simulation.
+          <p className="mt-4 md:mt-6 text-base text-muted-foreground md:text-lg leading-relaxed px-2 md:px-0">
+            <ProximityText>
+              Experimental research and development across vision, language, edge
+              computing, and simulation.
+            </ProximityText>
           </p>
         </AnimatedItem>
 
@@ -74,69 +77,35 @@ export function AILabsShowcase() {
 }
 
 function Controller() {
-  const [active, setActive] = useState<string>("vision");
-
   return (
-    <div className="w-full">
-      <div className="grid h-auto w-full grid-cols-2 md:grid-cols-4 gap-2">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActive(tab.id)}
-            className={cn(
-              "inline-flex items-center justify-center py-3 gap-2 rounded-sm px-3 text-sm font-medium focus-ring transition-colors",
-              active === tab.id
-                ? "bg-primary/10 text-primary shadow-sm"
-                : "bg-muted text-muted-foreground",
-            )}
-            aria-pressed={active === tab.id}
-          >
-            <tab.icon className="w-5 h-5" />
-            <span className="hidden sm:inline">{tab.label}</span>
-          </button>
-        ))}
-      </div>
-
-      {(() => {
-        // simple render of active tab (avoid animation issues)
-        const tab = tabs.find((t) => t.id === active) || tabs[0];
-        const image = PlaceHolderImages.find((p) => p.id === tab.imageId);
-
-        return (
-          <div className="mt-8">
-            <Card className="overflow-hidden border-border/60 shadow-lg">
-              <CardContent className="p-8">
-                <div className="text-center mb-6">
-                  <h3 className="text-xl font-semibold md:text-2xl">
-                    {tab.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground md:text-base">
-                    {tab.description}
-                  </p>
+    <div className="w-full h-[550px] md:h-[600px] overflow-hidden -mt-4 md:-mt-16 relative z-10">
+      <ScrollStack>
+        {tabs.map((tab) => {
+          const image = PlaceHolderImages.find((p) => p.id === tab.imageId);
+          return (
+            <ScrollStackItem key={tab.id} itemClassName="bg-card text-card-foreground border border-border/60 flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-between h-auto md:min-h-[320px]">
+              <div className="flex-1 w-full space-y-3 md:space-y-4 text-center md:text-left flex flex-col justify-center">
+                <div className="inline-flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-lg bg-primary/10 text-primary mx-auto md:mx-0 shrink-0">
+                  <tab.icon className="w-5 h-5 md:w-6 md:h-6" />
                 </div>
-                <div className="relative mx-auto aspect-video w-full max-w-3xl overflow-hidden rounded-lg border border-border/70 bg-background/60 shadow-inner">
-                  {image ? (
-                    <Image
-                      src={image.imageUrl}
-                      alt={tab.title}
-                      fill
-                      loading="eager"
-                      sizes="(min-width: 1280px) 40vw, (min-width: 768px) 60vw, 100vw"
-                      className="object-cover"
-                      data-ai-hint={image.imageHint}
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center w-full h-full text-muted-foreground">
-                      No preview available
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-secondary/20 mix-blend-overlay pointer-events-none" />
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        );
-      })()}
+                <h3 className="text-lg md:text-2xl font-semibold leading-tight">{tab.title}</h3>
+                <p className="text-sm md:text-base text-muted-foreground line-clamp-3 md:line-clamp-none"><ProximityText>{tab.description}</ProximityText></p>
+              </div>
+              <div className="flex-1 relative w-full h-[160px] md:h-full mt-2 md:mt-0 rounded-lg overflow-hidden bg-muted shrink-0 min-h-[160px] md:min-h-[200px]">
+                {image && (
+                  <Image
+                    src={image.imageUrl}
+                    alt={tab.title}
+                    fill
+                    className="object-cover"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-secondary/20 mix-blend-overlay pointer-events-none" />
+              </div>
+            </ScrollStackItem>
+          );
+        })}
+      </ScrollStack>
     </div>
   );
 }

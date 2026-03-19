@@ -1,87 +1,184 @@
 
 "use client";
-
-import Link from 'next/link';
-import { useState } from 'react';
-import { Logo } from '@/components/common/Logo';
-import JoinWaitlistButton from './JoinWaitlistButton';
-import { NAV_LINKS } from '@/lib/constants';
-import { Linkedin } from 'lucide-react';
-import { WaitlistDialog } from '../healthmate/WaitlistDialog';
-import { NewsletterForm } from './NewsletterForm';
+import React, { useState } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Linkedin,
+  Twitter,
+  Globe,
+} from "lucide-react";
+import { FooterBackgroundGradient, TextHoverEffect } from "@/components/ui/hover-footer";
+import Link from "next/link";
+import { WaitlistDialog } from "../healthmate/WaitlistDialog";
 
 export function Footer() {
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
+  // Footer link data
   const footerLinks = [
-    { href: '/about', label: 'About' },
-    { href: '/#domains', label: 'Domains' },
-    // { href: '/press', label: 'Press' },
-    { href: '/contact', label: 'Contact' },
-  ]
+    {
+      title: "Company",
+      links: [
+        { label: "About Us", href: "/about" },
+        { label: "Domains", href: "/#domains" },
+        { label: "Terms of Service", href: "/terms" },
+        { label: "Privacy Policy", href: "/privacy" },
+      ],
+    },
+    {
+      title: "Products",
+      links: [
+        { label: "HealthMate", href: "/healthmate" },
+        { label: "HealthMate Terms", href: "/healthmate-terms" },
+        { label: "Join Waitlist", href: "#", pulse: true, onClick: () => setIsWaitlistOpen(true) },
+      ],
+    },
+  ];
+
+  // Contact info data
+  const contactInfo = [
+    {
+      icon: <Mail size={18} className="text-[#3ca2fa]" />,
+      text: "pratham@praversetech.com",
+      href: "mailto:pratham@praversetech.com",
+    },
+    {
+      icon: <Phone size={18} className="text-[#3ca2fa]" />,
+      text: "+91 86373 73116",
+      href: "tel:+918637373116",
+    },
+    {
+      icon: <MapPin size={18} className="text-[#3ca2fa]" />,
+      text: "Vadodara, Gujarat, India",
+    },
+  ];
+
+  // Social media icons
+  const socialLinks = [
+    { icon: <Linkedin size={20} />, label: "LinkedIn", href: "https://www.linkedin.com/in/pratham-shrivastav-b81180251/" },
+  ];
 
   return (
-    <footer className="border-t border-border/60 bg-transparent">
-      <div className="container section-padding-sm">
-        <div className="rounded-2xl bg-card/60 backdrop-blur-md p-8">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
-            <div className="md:w-1/3 space-y-4">
-              <p className="text-sm text-muted-foreground leading-relaxed">Bringing validated innovations to market.</p>
-              <address className="text-sm text-muted-foreground not-italic">TOWER 2 - 413 &amp; 420, Prince Cube, Nayaran Garden, Gotri, Vadodara, Gujarat, India</address>
-              <div className="flex items-center gap-3">
-                <div className="flex">
-                  <Link href="https://www.linkedin.com/in/pratham-shrivastav-b81180251/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors focus-ring rounded-sm" aria-label="LinkedIn">
-                    <Linkedin className="h-5 w-5" />
-                  </Link>
-                </div>
-                <div className="ml-auto md:ml-0">
-                  <JoinWaitlistButton className="small" onClick={() => setIsWaitlistOpen(true)}>Join Waitlist</JoinWaitlistButton>
-                </div>
-              </div>
+    <footer className="bg-background relative h-fit rounded-3xl overflow-hidden mb-8 mt-16 mx-4 md:mx-8 border border-border/10">
+      <div className="max-w-7xl mx-auto p-8 md:p-14 z-50 relative pointer-events-none">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-16 pb-12 pointer-events-auto">
+          {/* Brand section */}
+          <div className="flex flex-col space-y-4">
+            <div className="flex items-center space-x-2">
+              <span className="text-[#3ca2fa] text-3xl font-extrabold flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#3ca2fa] fill-current">
+                   <path d="M12 2L22 7.77V16.22L12 22L2 16.22V7.77L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
+              <span className="text-foreground text-3xl font-bold tracking-tight">PRAVERSE</span>
             </div>
+            <p className="text-sm leading-relaxed text-muted-foreground mt-2">
+              Praverse Tech pioneers intelligent systems that learn, perceive, and collaborate. Bringing validated innovations to market.
+            </p>
+          </div>
 
-            <div className="md:w-1/3 grid grid-cols-2 gap-8">
-              <div>
-                <h4 className="font-semibold mb-4 text-foreground">Quick Links</h4>
-                <ul className="space-y-3">
-                  {footerLinks.map(link => (
-                    <li key={link.href}>
-                      <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors focus-ring rounded-sm">
+          {/* Footer link sections */}
+          {footerLinks.map((section) => (
+            <div key={section.title}>
+              <h4 className="text-foreground text-lg font-semibold mb-6">
+                {section.title}
+              </h4>
+              <ul className="space-y-3">
+                {section.links.map((link) => (
+                  <li key={link.label} className="relative flex items-center">
+                    {link.onClick ? (
+                       <button
+                         onClick={(e) => { e.preventDefault(); link.onClick(); }}
+                         className="text-muted-foreground hover:text-[#3ca2fa] transition-colors text-left"
+                       >
+                         {link.label}
+                       </button>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-muted-foreground hover:text-[#3ca2fa] transition-colors"
+                      >
                         {link.label}
                       </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4 text-foreground">Legal</h4>
-                <ul className="space-y-3">
-                  <li><Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors focus-ring rounded-sm">Terms of Service</Link></li>
-                  <li><Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors focus-ring rounded-sm">Privacy Policy</Link></li>
-                  <li><Link href="/healthmate-terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors focus-ring rounded-sm">HealthMate Terms</Link></li>
-                  <li><Link href="/healthmate-privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors focus-ring rounded-sm">HealthMate Privacy</Link></li>
-                </ul>
-              </div>
+                    )}
+                    {link.pulse && (
+                      <span className="relative ml-2 flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#3ca2fa] opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#3ca2fa]"></span>
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
+          ))}
 
-            <div className="md:w-1/3">
-              <h4 className="font-semibold text-foreground">Subscribe to our newsletter</h4>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4">Get the latest on our research, products, and insights.</p>
-              <div className="rounded-lg border border-border/50 p-4 bg-background/5">
-                <NewsletterForm />
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 border-t border-border/40 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
-            <div>
-              <p>© {new Date().getFullYear()} Praverse Tech Pvt Ltd. All rights reserved.</p>
-              <p className="text-xs">HealthMate is proprietary and patent-pending. Details available under NDA.</p>
-            </div>
+          {/* Contact section */}
+          <div>
+            <h4 className="text-foreground text-lg font-semibold mb-6">
+              Contact Us
+            </h4>
+            <ul className="space-y-4">
+              {contactInfo.map((item, i) => (
+                <li key={i} className="flex items-start space-x-3 text-muted-foreground">
+                  <span className="mt-1">{item.icon}</span>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      className="hover:text-[#3ca2fa] transition-colors"
+                    >
+                      {item.text}
+                    </a>
+                  ) : (
+                    <span className="hover:text-[#3ca2fa] transition-colors">
+                      {item.text}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
+
+        {/* Footer bottom */}
+        <div className="flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0 text-muted-foreground mb-8 pointer-events-auto">
+          {/* Social icons */}
+          <div className="flex space-x-6">
+            {socialLinks.map(({ icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                className="hover:text-[#3ca2fa] transition-colors"
+              >
+                {icon}
+              </a>
+            ))}
+          </div>
+
+          {/* Copyright */}
+          <div className="text-center md:text-right">
+            <p>
+              &copy; {new Date().getFullYear()} Praverse Tech Pvt Ltd. All rights reserved.
+            </p>
+            <p className="text-xs mt-1">HealthMate is proprietary and patent-pending.</p>
+          </div>
+        </div>
+
+        <hr className="border-t border-border/40 my-8 mix-blend-overlay" />
       </div>
 
+      {/* Text hover effect */}
+      <div className="lg:flex hidden h-[30rem] -mt-52 -mb-36 pointer-events-none relative z-10">
+        <TextHoverEffect text="PRAVERSE" className="z-10 pointer-events-auto" />
+      </div>
+
+      <FooterBackgroundGradient />
+      
       <WaitlistDialog open={isWaitlistOpen} onOpenChange={setIsWaitlistOpen}>
         <span className="sr-only">Open Waitlist</span>
       </WaitlistDialog>

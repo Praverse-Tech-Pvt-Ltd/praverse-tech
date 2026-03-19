@@ -7,6 +7,7 @@ import { ArrowRight } from 'lucide-react';
 import { Logo } from '@/components/common/Logo';
 import Iridescence from '@/components/common/Iridescence';
 import { AnimatedLinkButton } from '@/components/ui/AnimatedLinkButton';
+import { ProximityText } from '@/components/ui/ProximityText';
 
 const COLORS = [
   '#6366F1', // indigo-500
@@ -74,10 +75,10 @@ export function Hero() {
             Engineering Human-Centered Intelligence.
           </h1>
           <p className="mt-6 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed text-foreground/90">
-            Intelligent systems that learn, perceive, and collaborate — powering pharma AI, humanoid robotics, and next-generation bio-intelligence for regulated industries.
+            <ProximityText>Intelligent systems that learn, perceive, and collaborate — powering pharma AI, humanoid robotics, and next-generation bio-intelligence for regulated industries.</ProximityText>
           </p>
-          <p className="max-w-2xl mx-auto text-base text-foreground/70">
-            Bringing validated innovations to market with precision and trust.
+          <p className="max-w-2xl mx-auto text-base text-foreground/70 mt-4">
+            <ProximityText>Bringing validated innovations to market with precision and trust.</ProximityText>
           </p>
         </motion.div>
         <motion.div
