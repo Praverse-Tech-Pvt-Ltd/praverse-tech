@@ -29,7 +29,7 @@ export function PravProvider({ children }: { children: React.ReactNode }) {
   const { reaction, lastEvent } = usePravEvents();
   
   // For now, we are not using feature flags from Remote Config, but this is where you would.
-  const isPravEnabled = true;
+  const isPravEnabled = false;
 
   if (!isPravEnabled) {
     return <>{children}</>;

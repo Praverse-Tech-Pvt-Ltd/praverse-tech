@@ -176,36 +176,65 @@ export function EnterpriseSolutions() {
 
   return (
     <div className="bg-background">
-      <AnimatedSection className="section-padding-sm bg-muted" amount={0.45} staggerChildren={0.1}>
-        <div className="container text-center">
+      <AnimatedSection className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32 border-b border-border/40" amount={0.3} staggerChildren={0.1}>
+        {/* Decorative Background Effects */}
+        <div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+        <div className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-[120px]">
+          <div className="aspect-[2/1] w-[600px] md:w-[800px] bg-gradient-to-tr from-primary/20 via-primary/10 to-secondary/20 rounded-full opacity-70" />
+        </div>
+
+        <div className="container relative z-10 text-center">
           <AnimatedItem>
-            <Badge className="mb-4">Enterprise Solutions</Badge>
+            <div className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary shadow-sm ring-1 ring-inset ring-primary/20 backdrop-blur-md transition-colors hover:bg-primary/20">
+              <ShieldCheck className="h-4 w-4" />
+              <span>Enterprise Solutions</span>
+            </div>
           </AnimatedItem>
+
           <AnimatedItem>
-            <h1 className="prose-heading">Enterprise-Grade AI Solutions for Regulated Industries.</h1>
+            <h1 className="mx-auto max-w-5xl text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+              <span className="text-foreground">Enterprise-Grade </span>
+              <span className="bg-gradient-to-r from-primary via-cyan-500 to-secondary bg-clip-text text-transparent drop-shadow-sm pb-2">
+                AI Solutions
+              </span>
+              <br className="hidden md:block" />
+              <span className="text-foreground leading-tight"> for Regulated Industries.</span>
+            </h1>
           </AnimatedItem>
+
           <AnimatedItem>
-            <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            <p className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl md:leading-relaxed">
               We design and deploy secure, explainable, production-ready AI systems—built for compliance, data integrity, and mission-critical workflows.
             </p>
           </AnimatedItem>
+
           <AnimatedItem className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <WaitlistDialog open={isWaitlistOpen} onOpenChange={setIsWaitlistOpen}>
-              <JoinWaitlistButton onClick={() => setIsWaitlistOpen(true)}>Join Waitlist</JoinWaitlistButton>
+              <div className="rounded-full shadow-[0_0_20px_hsl(var(--primary)/0.25)] transition-shadow hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)]">
+                <JoinWaitlistButton onClick={() => setIsWaitlistOpen(true)}>Join Waitlist</JoinWaitlistButton>
+              </div>
             </WaitlistDialog>
-            <Button asChild size="lg" variant="outline" className="focus-ring">
+            <Button asChild size="lg" variant="outline" className="h-11 rounded-full border-border/60 bg-background/50 px-8 backdrop-blur-md hover:bg-muted focus-ring">
               <Link href="/contact">Talk to Us</Link>
             </Button>
           </AnimatedItem>
-          <AnimatedItem className="mt-10 flex flex-wrap items-center justify-center gap-2 md:gap-3">
-            {trustBadges.map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-border/70 bg-background/80 px-4 py-1.5 text-xs font-medium text-muted-foreground md:text-sm"
-              >
-                {item}
-              </span>
-            ))}
+
+          <AnimatedItem className="mt-16 md:mt-24">
+            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Trusted Core Capabilities</p>
+            <div className="flex flex-wrap items-center justify-center gap-3 px-4 md:gap-4">
+              {trustBadges.map((item) => (
+                <div
+                  key={item}
+                  className="group flex flex-shrink-0 items-center gap-2.5 rounded-full border border-border/50 bg-card/40 px-5 py-2 text-sm font-medium text-foreground shadow-sm backdrop-blur-md transition-all hover:border-primary/40 hover:bg-card/80 hover:shadow-md"
+                >
+                  <div className="relative flex h-2 w-2 items-center justify-center">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75 group-hover:bg-cyan-400"></span>
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary group-hover:bg-cyan-500"></span>
+                  </div>
+                  {item}
+                </div>
+              ))}
+            </div>
           </AnimatedItem>
         </div>
       </AnimatedSection>
