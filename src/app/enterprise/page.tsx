@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { EnterpriseSolutions } from "@/components/enterprise/EnterpriseSolutions";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Enterprise-Grade Solutions | Praverse Tech",
+export const metadata: Metadata = createPageMetadata({
+  title: "Enterprise Solutions",
   description:
     "Secure, explainable, and validation-ready AI systems for regulated industries across pharma, healthcare, and advanced enterprise operations.",
-};
+  path: "/enterprise",
+});
 
 const faqSchema = {
   "@context": "https://schema.org",

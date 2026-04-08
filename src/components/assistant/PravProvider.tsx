@@ -1,17 +1,15 @@
-
 'use client';
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { PravDock } from './PravDock';
 import { PravPanel } from './PravPanel';
-import { usePravEvents } from './usePravEvents';
-import { PravReaction } from './PravReactions';
 
 interface PravContextType {
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  reaction: PravReaction;
-  lastEvent: string | null;
+  isMinimized: boolean;
+  openGuide: () => void;
+  closeGuide: () => void;
+  minimizeGuide: () => void;
 }
 
 const PravContext = createContext<PravContextType | null>(null);
@@ -26,20 +24,46 @@ export function usePrav() {
 
 export function PravProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const { reaction, lastEvent } = usePravEvents();
-  
-  // For now, we are not using feature flags from Remote Config, but this is where you would.
-  const isPravEnabled = false;
+  const [isMinimized, setIsMinimized] = useState(false);
 
-  if (!isPravEnabled) {
-    return <>{children}</>;
-  }
+  const openGuide = () => {
+    setIsOpen(true);
+    setIsMinimized(false);
+  };
+
+  const closeGuide = () => {
+    setIsOpen(false);
+    setIsMinimized(false);
+  };
+
+  const minimizeGuide = () => {
+    setIsOpen(false);
+    setIsMinimized(true);
+  };
+
+  useEffect(() => {
+    const handleShortcut = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        openGuide();
+      }
+
+      if (event.key === 'Escape' && isOpen) {
+        event.preventDefault();
+        closeGuide();
+      }
+    };
+
+    window.addEventListener('keydown', handleShortcut);
+    return () => window.removeEventListener('keydown', handleShortcut);
+  }, [isOpen]);
 
   const value = {
     isOpen,
-    setIsOpen,
-    reaction,
-    lastEvent,
+    isMinimized,
+    openGuide,
+    closeGuide,
+    minimizeGuide,
   };
 
   return (

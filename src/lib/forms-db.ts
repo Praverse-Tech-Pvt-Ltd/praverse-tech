@@ -324,14 +324,14 @@ export async function saveContactSubmission(data: ContactSubmission) {
 
 const fallbackFaq: HealthmateFaqItem[] = [
   {
-    question: "What is HealthMate?",
+    question: "What is Mennie?",
     answer:
-      "HealthMate is Praverse Tech's humanoid-assistive robotics initiative for healthcare and educational environments.",
+      "Mennie is Praverse Tech's humanoid-assistive robotics initiative for healthcare and institutional environments.",
   },
   {
-    question: "Is HealthMate available publicly?",
+    question: "Is Mennie available publicly?",
     answer:
-      "HealthMate is currently in private beta. You can register interest through the waitlist.",
+      "Mennie is currently in private beta. You can register interest through the waitlist.",
   },
   {
     question: "Which organizations can collaborate?",

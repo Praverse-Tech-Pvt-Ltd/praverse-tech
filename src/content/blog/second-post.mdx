@@ -1,22 +1,19 @@
-
 ---
-title: 'HealthMate: Reimagining Patient Triage with Multimodal AI'
+title: 'Mennie: Reimagining Patient Triage with Multimodal AI'
 date: '2024-06-10'
 author: 'Rajesh Kumar'
-excerpt: 'Patient intake is often the biggest bottleneck in healthcare. See how our AI-powered HealthMate kiosk is changing the game.'
+excerpt: 'Patient intake is often the biggest bottleneck in healthcare. See how our AI-powered Mennie kiosk is changing the game.'
 image: 'blog-post-2'
 tags: ['HealthTech', 'AI', 'Triage', 'EHR']
 ---
 
-import {MdxComponents} from '@/components/blog/MdxComponents';
-
 ## The Emergency Room Bottleneck
 
-Anyone who has visited a hospital knows the frustration of waiting. The initial triage process is critical but often slow and manual. This is where HealthMate comes in.
+Anyone who has visited a hospital knows the frustration of waiting. The initial triage process is critical but often slow and manual. This is where Mennie comes in.
 
 ### More Than Just a Check-in
 
-HealthMate is not a simple check-in screen. It's a sophisticated diagnostic assistant.
+Mennie is not a simple check-in screen. It's a sophisticated diagnostic assistant.
 
 1.  **Vitals Capture:** Integrated sensors capture temperature, blood pressure, and SpO2.
 2.  **Symptom Understanding:** Patients can speak or type their symptoms in natural language. Our NLP model understands context and asks clarifying questions.
@@ -24,17 +21,11 @@ HealthMate is not a simple check-in screen. It's a sophisticated diagnostic assi
 
 ### A Real-World Example
 
-```javascript
-const patientData = {
-  vitals: {
-    temp: '38.5C',
-    bp: '140/90',
-    spo2: '96%',
-  },
-  symptoms: 'I have a bad cough and my chest hurts when I breathe.',
-  triageScore: 8, // AI-generated urgency score
-  recommendedAction: 'Immediate review by nurse practitioner.'
-};
-```
+In a typical workflow, Mennie can capture patient vitals, structure symptom intake, and hand an urgency signal to clinical staff before a nurse begins the next assessment step.
 
-This structured output allows clinical staff to prioritize patients effectively, leading to better outcomes and a more efficient workflow.
+- **Vitals:** temperature, blood pressure, and oxygen saturation are captured at intake.
+- **Symptoms:** the patient describes what is happening in natural language.
+- **Triage signal:** the system returns a structured urgency summary for staff review.
+- **Care handoff:** the resulting record can be moved into existing clinical workflows faster than manual intake alone.
+
+This kind of structured output helps teams prioritize patients more effectively, reduce waiting-room friction, and create a more consistent first layer of triage support.

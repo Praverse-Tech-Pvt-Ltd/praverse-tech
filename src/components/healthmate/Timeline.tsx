@@ -3,6 +3,7 @@ import {
   AnimatedSection,
 } from "@/components/common/AnimatedSection";
 import { getHealthmateTimeline } from "@/lib/forms-db";
+import { renameHealthMateReferences } from "@/lib/mennie";
 
 export async function Timeline() {
   const sortedTimeline = await getHealthmateTimeline();
@@ -32,7 +33,9 @@ export async function Timeline() {
                 className={`rounded-2xl border border-border/60 bg-background/80 p-6 shadow-sm backdrop-blur md:w-[calc(50%-2.5rem)] ${index % 2 === 0 ? "md:mr-auto md:text-right" : "md:ml-auto md:text-left"} md:pr-8 md:pl-8`}
               >
                 <p className="text-lg font-bold text-primary">{item.date}</p>
-                <p className="mt-1 text-muted-foreground">{item.description}</p>
+                <p className="mt-1 text-muted-foreground">
+                  {renameHealthMateReferences(item.description)}
+                </p>
               </div>
               <div className="absolute left-3 top-8 -translate-x-1/2 md:left-1/2 md:top-1/2 md:-translate-y-1/2 md:-translate-x-1/2">
                 <div

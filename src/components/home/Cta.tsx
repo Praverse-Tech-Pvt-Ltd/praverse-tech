@@ -21,10 +21,10 @@ export function Cta() {
             </p>
             <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
               <Button asChild size="lg" variant="outline" className="border-white bg-transparent text-white hover:bg-white hover:text-primary focus-ring">
-                <Link href="/contact">Collaborate With Us</Link>
+                <Link href="/contact">Discuss a Project</Link>
               </Button>
               <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 focus-ring">
-                <Link href="/contact">Intern / Partner</Link>
+                <Link href="/contact">Contact Us</Link>
               </Button>
             </div>
           </div>

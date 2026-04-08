@@ -1,4 +1,6 @@
 
+import { MENNIE_NAME } from "./mennie";
+
 export type NavLink = {
   href: string;
   label: string;
@@ -16,7 +18,7 @@ export const NAV_LINKS: NavLink[] = [
     children: [
       { href: '/machine-learning', label: 'Machine Learning' },
       { href: '/industrial-robotics', label: 'Industrial Robotics' },
-      { href: '/healthmate', label: 'HealthMate' },
+      { href: '/healthmate', label: MENNIE_NAME },
       { href: '/innovate', label: 'Innovate With Us' },
     ]
   },

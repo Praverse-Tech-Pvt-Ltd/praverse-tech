@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import {
   ShieldCheck,
@@ -16,14 +15,11 @@ import {
   Factory,
   Landmark,
   ArrowRight,
-  Gauge,
 } from "lucide-react";
 import { AnimatedItem, AnimatedSection } from "@/components/common/AnimatedSection";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import JoinWaitlistButton from "@/components/common/JoinWaitlistButton";
-import { WaitlistDialog } from "@/components/healthmate/WaitlistDialog";
 
 const trustBadges = [
   "Security-first",
@@ -146,19 +142,19 @@ const outcomes = [
     title: "Regulatory Review Bottleneck",
     problem: "Manual review cycles were delaying quality and regulatory response timelines.",
     built: "A structured AI workflow for observation clustering, summarization, and action drafting.",
-    result: "NDA / Confidential — reduced manual review time by X% with stronger auditability.",
+    result: "Confidential client engagement with measurable review acceleration and stronger auditability in controlled workflows.",
   },
   {
     title: "Fragmented GxP Documentation",
     problem: "Critical records were distributed across systems with inconsistent traceability.",
     built: "A governed document intelligence layer with lineage tagging and role-based workflows.",
-    result: "NDA / Confidential — improved retrieval precision by X% and shortened audit prep cycles.",
+    result: "Confidential client engagement focused on improving retrieval consistency and shortening audit preparation effort.",
   },
   {
     title: "Model Reliability in Production",
     problem: "Existing models lacked drift visibility and validation-linked monitoring.",
     built: "A monitoring stack with alerting thresholds, model cards, and retraining triggers.",
-    result: "NDA / Confidential — reduced production incidents by X% over baseline periods.",
+    result: "Confidential client engagement designed to improve monitoring discipline and reduce avoidable production risk.",
   },
 ];
 
@@ -172,8 +168,6 @@ const processSteps = [
 ];
 
 export function EnterpriseSolutions() {
-  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
-
   return (
     <div className="bg-background">
       <AnimatedSection className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32 border-b border-border/40" amount={0.3} staggerChildren={0.1}>
@@ -209,13 +203,11 @@ export function EnterpriseSolutions() {
           </AnimatedItem>
 
           <AnimatedItem className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <WaitlistDialog open={isWaitlistOpen} onOpenChange={setIsWaitlistOpen}>
-              <div className="rounded-full shadow-[0_0_20px_hsl(var(--primary)/0.25)] transition-shadow hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)]">
-                <JoinWaitlistButton onClick={() => setIsWaitlistOpen(true)}>Join Waitlist</JoinWaitlistButton>
-              </div>
-            </WaitlistDialog>
+            <Button asChild size="lg" className="h-11 rounded-full px-8 focus-ring">
+              <Link href="/contact">Discuss a Project</Link>
+            </Button>
             <Button asChild size="lg" variant="outline" className="h-11 rounded-full border-border/60 bg-background/50 px-8 backdrop-blur-md hover:bg-muted focus-ring">
-              <Link href="/contact">Talk to Us</Link>
+              <Link href="/contact">Contact Us</Link>
             </Button>
           </AnimatedItem>
 
@@ -454,16 +446,20 @@ export function EnterpriseSolutions() {
                 Partner with Praverse Tech to deploy secure, explainable AI systems designed for real-world regulated operations.
               </p>
               <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-                <WaitlistDialog open={isWaitlistOpen} onOpenChange={setIsWaitlistOpen}>
-                  <JoinWaitlistButton onClick={() => setIsWaitlistOpen(true)}>Join Waitlist</JoinWaitlistButton>
-                </WaitlistDialog>
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90 focus-ring"
+                >
+                  <Link href="/contact">Discuss a Project</Link>
+                </Button>
                 <Button
                   asChild
                   size="lg"
                   variant="outline"
                   className="border-white bg-transparent text-white hover:bg-white hover:text-primary focus-ring"
                 >
-                  <Link href="/contact">Collaborate With Us <Gauge className="ml-2 h-4 w-4" /></Link>
+                  <Link href="/contact">Contact Us</Link>
                 </Button>
               </div>
             </div>

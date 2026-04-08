@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
-import { DOMAINS } from '@/lib/data';
+import type { DomainItem } from '@/lib/data';
 
 const DEFAULT_PARTICLE_COUNT = 12;
 const DEFAULT_SPOTLIGHT_RADIUS = 300;
@@ -457,6 +457,7 @@ const useMobileDetection = () => {
 };
 
 type BentoProps = {
+  items: DomainItem[];
   textAutoHide?: boolean;
   enableStars?: boolean;
   enableSpotlight?: boolean;
@@ -471,6 +472,7 @@ type BentoProps = {
 };
 
 const MagicBento: React.FC<BentoProps> = ({
+  items,
   textAutoHide = true,
   enableStars = true,
   enableSpotlight = true,
@@ -487,12 +489,10 @@ const MagicBento: React.FC<BentoProps> = ({
   const isMobile = useMobileDetection();
   const shouldDisableAnimations = disableAnimations || isMobile;
 
-  // map DOMAINS to cardData shape
-  const cardData = DOMAINS.map(d => ({
-    // preserve title/description from data.ts; styling will use site theme classes
-    title: d.title,
-    description: d.description,
-    label: d.title.split(' ')[0]
+  const cardData = items.map((item) => ({
+    title: item.title,
+    description: item.description,
+    label: item.status,
   }));
 
   return (

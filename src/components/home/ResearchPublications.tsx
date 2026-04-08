@@ -12,9 +12,8 @@ import {
 } from '@/components/ui/carousel';
 import { PUBLICATIONS } from '@/lib/data';
 import { Badge } from '../ui/badge';
-import { Button } from '../ui/button';
 import { ProximityText } from '@/components/ui/ProximityText';
-import { BookOpen, ArrowRight } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 
 export function ResearchPublications() {
 
@@ -27,13 +26,13 @@ export function ResearchPublications() {
       <div className="container relative z-10">
         <AnimatedItem className="mx-auto mb-16 max-w-3xl text-center">
           <Badge variant="outline" className="mb-4 border-primary/20 bg-primary/5 text-primary">
-            Publications
+            Research Credibility
           </Badge>
           <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
             Research & Publications
           </h2>
           <p className="text-lg text-muted-foreground md:text-xl">
-            <ProximityText>We are committed to advancing the field through peer-reviewed research and rigorous innovation.</ProximityText>
+            <ProximityText>Research that informs our thinking, product rigor, and long-horizon technical direction.</ProximityText>
           </p>
         </AnimatedItem>
 
@@ -74,11 +73,10 @@ export function ResearchPublications() {
                       </CardDescription>
                     </CardContent>
                     
-                    <CardFooter className="relative z-10 pt-4 border-t border-border/10 mt-auto">
-                      <Button variant="ghost" className="w-full group/btn justify-between hover:bg-primary/5 hover:text-primary px-4">
-                        <span>Read Abstract</span>
-                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                      </Button>
+                    <CardFooter className="relative z-10 mt-auto border-t border-border/10 pt-4">
+                      <p className="w-full px-4 text-sm text-muted-foreground">
+                        Research abstract
+                      </p>
                     </CardFooter>
                   </Card>
                 </AnimatedItem>

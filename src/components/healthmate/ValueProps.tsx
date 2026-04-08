@@ -4,12 +4,13 @@
 import { motion, type Variants } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BrainCircuit, Lock, Users } from "lucide-react";
+import { MENNIE_NAME } from "@/lib/mennie";
 
 const values = [
   {
     icon: <BrainCircuit className="h-10 w-10 text-primary" />,
     title: "Human-centric Interaction",
-    description: "Designed for natural conversation and empathetic presence, HealthMate understands and responds with emotional intelligence.",
+    description: `Designed for natural conversation and empathetic presence, ${MENNIE_NAME} is built to respond with calm, guided intelligence.`,
   },
   {
     icon: <Users className="h-10 w-10 text-primary" />,
@@ -19,7 +20,7 @@ const values = [
   {
     icon: <Lock className="h-10 w-10 text-primary" />,
     title: "Enterprise-Grade Security",
-    description: "Privacy and governance are at our core. HealthMate ensures data protection and full auditability from the ground up.",
+    description: `Privacy and governance are at our core. ${MENNIE_NAME} is designed for data protection and auditability from the ground up.`,
   },
 ];
 

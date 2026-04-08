@@ -12,6 +12,11 @@ export interface PostMetadata {
   excerpt: string;
   image: string;
   tags: string[];
+  category?: string;
+  metaDescription?: string;
+  readingTime?: string;
+  legacySlugs?: string[];
+  slug?: string;
 }
 
 export interface Post {
@@ -19,6 +24,39 @@ export interface Post {
   metadata: PostMetadata;
   content: string;
   readingTime: string;
+}
+
+function normalizeSlug(value: string) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/\.mdx?$/, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
+function buildPostFromFile(fileName: string): Post | null {
+  try {
+    const fileSlug = normalizeSlug(fileName);
+    const fullPath = path.join(postsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const { data, content } = matter(fileContents);
+    const metadata = data as PostMetadata;
+    const slug = normalizeSlug(metadata.slug ?? fileSlug);
+
+    return {
+      slug,
+      metadata: {
+        ...metadata,
+        slug,
+      },
+      content,
+      readingTime: metadata.readingTime?.trim() || readingTime(content).text,
+    };
+  } catch {
+    return null;
+  }
 }
 
 export function getBlogPosts(): Post[] {
@@ -29,51 +67,35 @@ export function getBlogPosts(): Post[] {
   const fileNames = fs
     .readdirSync(postsDirectory)
     .filter((fileName) => fileName.endsWith(".mdx"));
-  const allPosts = fileNames
-    .map((fileName) => {
-      try {
-        const slug = fileName.replace(/\.mdx$/, "");
-        const fullPath = path.join(postsDirectory, fileName);
-        const fileContents = fs.readFileSync(fullPath, "utf8");
-        const { data, content } = matter(fileContents);
 
-        return {
-          slug,
-          metadata: data as PostMetadata,
-          content,
-          readingTime: readingTime(content).text,
-        };
-      } catch {
-        return null;
-      }
-    })
-    .filter((post): post is Post => post !== null);
-
-  return allPosts.sort(
-    (a, b) =>
-      new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime(),
-  );
+  return fileNames
+    .map(buildPostFromFile)
+    .filter((post): post is Post => post !== null)
+    .sort(
+      (a, b) =>
+        new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime(),
+    );
 }
 
 export function getPostBySlug(slug: string): Post | undefined {
-  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
-  if (!fs.existsSync(fullPath)) {
-    return undefined;
-  }
-  let fileContents = "";
+  const normalizedSlug = normalizeSlug(slug);
+  return getBlogPosts().find((post) => {
+    if (post.slug === normalizedSlug) {
+      return true;
+    }
 
-  try {
-    fileContents = fs.readFileSync(fullPath, "utf8");
-  } catch {
-    return undefined;
-  }
+    return post.metadata.legacySlugs?.some(
+      (legacySlug) => normalizeSlug(legacySlug) === normalizedSlug,
+    );
+  });
+}
 
-  const { data, content } = matter(fileContents);
-
-  return {
-    slug,
-    metadata: data as PostMetadata,
-    content,
-    readingTime: readingTime(content).text,
-  };
+export function getFounderPost(): Post | undefined {
+  return getBlogPosts().find((post) =>
+    post.metadata.tags?.some(
+      (tag) =>
+        typeof tag === "string" &&
+        tag.toLowerCase() === "founder insights",
+    ),
+  );
 }

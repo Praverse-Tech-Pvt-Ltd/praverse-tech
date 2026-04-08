@@ -9,6 +9,7 @@ import {
   AnimatedSection,
 } from "@/components/common/AnimatedSection";
 import { getHealthmateFaq } from "@/lib/forms-db";
+import { renameHealthMateReferences } from "@/lib/mennie";
 
 export async function FAQ() {
   const faqs = await getHealthmateFaq();
@@ -29,10 +30,10 @@ export async function FAQ() {
           {faqs.map((faq, index) => (
             <AccordionItem key={index} value={`item-${index}`}>
               <AccordionTrigger className="text-lg text-left">
-                {faq.question}
+                {renameHealthMateReferences(faq.question)}
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                {faq.answer}
+                {renameHealthMateReferences(faq.answer)}
               </AccordionContent>
             </AccordionItem>
           ))}

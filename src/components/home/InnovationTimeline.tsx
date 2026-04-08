@@ -10,8 +10,8 @@ export function InnovationTimeline() {
     <AnimatedSection className="section-padding bg-muted" staggerChildren={0.08}>
       <div className="container mx-auto max-w-5xl">
         <AnimatedItem className="mb-20 text-center">
-          <h2 className="prose-heading">Our Innovation Timeline</h2>
-          <p className="mt-6 text-base text-muted-foreground md:text-lg leading-relaxed"><ProximityText>Key milestones in our journey to build trustworthy AI systems.</ProximityText></p>
+          <h2 className="prose-heading">Selected Milestones</h2>
+          <p className="mt-6 text-base text-muted-foreground md:text-lg leading-relaxed"><ProximityText>Key markers in our evolution from applied AI experiments to focused product and research programs.</ProximityText></p>
         </AnimatedItem>
         <div className="relative pl-8 md:pl-0">
           <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-primary/50 to-transparent md:left-1/2" />

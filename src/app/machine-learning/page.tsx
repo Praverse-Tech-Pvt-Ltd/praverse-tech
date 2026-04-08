@@ -5,6 +5,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { ArrowRight, CheckCircle, Cpu, FlaskConical, Microscope, Stethoscope, Layers, Database, Shield } from 'lucide-react';
 import Link from 'next/link';
 import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
+import { createPageMetadata } from '@/lib/site';
+
+export const metadata = createPageMetadata({
+  title: "Machine Learning",
+  description:
+    "Applied machine learning capabilities across healthcare, pharma, and intelligent automation programs.",
+  path: "/machine-learning",
+});
 
 const useCases = [
   {

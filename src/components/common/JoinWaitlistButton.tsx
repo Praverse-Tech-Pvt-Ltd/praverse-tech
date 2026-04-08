@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { MENNIE_WAITLIST_LABEL } from '@/lib/mennie';
 
 type Props = {
   onClick?: () => void;
@@ -13,9 +14,9 @@ export default function JoinWaitlistButton({ onClick, children, className }: Pro
     <button
       onClick={onClick}
       className={`join-btn relative overflow-hidden rounded-full px-5 py-2.5 bg-primary text-primary-foreground font-bold flex items-center gap-2 border-2 border-white/30 shadow-[0_10px_20px_rgba(0,0,0,0.2)] transition-transform duration-300 ${className ?? ''}`}
-      aria-label="Join Waitlist"
+      aria-label={MENNIE_WAITLIST_LABEL}
     >
-      {children ?? 'Apply Now'}
+      {children ?? MENNIE_WAITLIST_LABEL}
 
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -1,170 +1,257 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { usePrav } from "./PravProvider";
-import { X, CornerDownLeft, Sparkles } from "lucide-react";
+import { useMemo, useRef, useState, useEffect } from "react";
+import Link from "next/link";
+import { Minus, SendHorizonal, Sparkles, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState, useRef, useEffect } from "react";
-import { pravChat } from "@/ai/flows/prav-chat";
 import { PravIcon } from "./PravIcon";
+import { usePrav } from "./PravProvider";
+import {
+  getSiteGuideReply,
+  siteGuideQuickActions,
+  siteGuideWelcome,
+  type SiteGuideLink,
+} from "@/lib/site-guide";
+import { MENNIE_NAME } from "@/lib/mennie";
 
-interface Message {
-  role: "user" | "model";
+type Message = {
+  id: string;
+  role: "guide" | "user";
   content: string;
+  suggestions?: SiteGuideLink[];
+};
+
+function MessageActions({
+  suggestions,
+  onNavigate,
+}: {
+  suggestions?: SiteGuideLink[];
+  onNavigate: () => void;
+}) {
+  if (!suggestions?.length) {
+    return null;
+  }
+
+  return (
+    <div className="mt-3 flex flex-wrap gap-2">
+      {suggestions.map((suggestion) => {
+        const isExternalAction =
+          suggestion.href.startsWith("mailto:") || suggestion.href.startsWith("tel:");
+
+        if (isExternalAction) {
+          return (
+            <a
+              key={`${suggestion.label}-${suggestion.href}`}
+              href={suggestion.href}
+              className="rounded-full border border-border/50 bg-background/55 px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-primary/35 hover:bg-primary/10 hover:text-primary"
+            >
+              {suggestion.label}
+            </a>
+          );
+        }
+
+        return (
+          <Link
+            key={`${suggestion.label}-${suggestion.href}`}
+            href={suggestion.href}
+            onClick={onNavigate}
+            className="rounded-full border border-border/50 bg-background/55 px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-primary/35 hover:bg-primary/10 hover:text-primary"
+          >
+            {suggestion.label}
+          </Link>
+        );
+      })}
+    </div>
+  );
 }
 
 export function PravPanel() {
-  const { isOpen, setIsOpen } = usePrav();
+  const { isOpen, closeGuide, minimizeGuide } = usePrav();
   const [message, setMessage] = useState("");
   const [history, setHistory] = useState<Message[]>([
     {
-      role: "model",
-      content:
-        "Hi, I’m Prav 🤖 — your AI companion from Praverse. Ask me about our labs or projects.",
+      id: "welcome",
+      role: "guide",
+      content: siteGuideWelcome,
+      suggestions: [
+        { label: "What we build", href: "/" },
+        { label: "Explore domains", href: "/domains" },
+        { label: MENNIE_NAME, href: "/healthmate" },
+        { label: "Founder insights", href: "/blog" },
+        { label: "Contact us", href: "/contact" },
+      ],
     },
   ]);
-  const [loading, setLoading] = useState(false);
+  const [isKeyboardHintVisible, setIsKeyboardHintVisible] = useState(true);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const scrollToBottom = () => {
+  const quickActions = useMemo(() => siteGuideQuickActions, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      inputRef.current?.focus();
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
     if (scrollAreaRef.current) {
       scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
     }
-  };
+  }, [history]);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [history, loading]);
+  const submitQuery = (query: string) => {
+    const trimmed = query.trim();
+    if (!trimmed) return;
 
-  const handleSend = async () => {
-    if (!message.trim() || loading) return;
-
-    const newUserMessage: Message = { role: "user", content: message };
-    const newHistory = [...history, newUserMessage];
-
-    setHistory(newHistory);
+    const reply = getSiteGuideReply(trimmed);
+    setHistory((current) => [
+      ...current,
+      { id: `user-${current.length}`, role: "user", content: trimmed },
+      {
+        id: `guide-${current.length + 1}`,
+        role: "guide",
+        content: reply.message,
+        suggestions: reply.suggestions,
+      },
+    ]);
     setMessage("");
-    setLoading(true);
-
-    // Add a placeholder for the model's response
-    setHistory((prev) => [...prev, { role: "model", content: "" }]);
-
-    try {
-      const result = await pravChat({ history: newHistory });
-
-      // Update the last message (the placeholder) with the actual response
-      setHistory((prev) => {
-        const updated = [...prev];
-        updated[updated.length - 1].content = result.response;
-        return updated;
-      });
-    } catch (error) {
-      console.error("Prav chat error:", error);
-      setHistory((prev) => {
-        const updated = [...prev];
-        updated[updated.length - 1].content =
-          "Sorry, I'm having a little trouble connecting right now. Please try again in a moment.";
-        return updated;
-      });
-    } finally {
-      setLoading(false);
-    }
+    setIsKeyboardHintVisible(false);
   };
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.95 }}
+        <motion.section
+          initial={{ opacity: 0, y: 20, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 20, scale: 0.95 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="fixed bottom-20 left-3 right-3 z-50 h-[70vh] max-h-[560px] overflow-hidden rounded-2xl border border-border/20 bg-background/50 shadow-2xl backdrop-blur-xl sm:bottom-24 sm:left-auto sm:right-6 sm:w-[380px] sm:h-[600px]"
+          exit={{ opacity: 0, y: 16, scale: 0.98 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className="fixed bottom-5 left-3 right-3 z-50 h-[72vh] max-h-[640px] overflow-hidden rounded-[30px] border border-border/60 bg-card/90 shadow-2xl backdrop-blur-xl sm:bottom-6 sm:left-auto sm:right-6 sm:w-[420px]"
+          role="dialog"
+          aria-label="Praverse site guide"
         >
-          {/* Glowing border effect */}
-          <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 opacity-50 blur-lg" />
-
-          <div className="relative z-10 flex flex-col h-full bg-background/70">
-            <header className="p-4 flex items-center justify-between border-b border-border/20 flex-shrink-0">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-primary/10 rounded-full">
-                  <PravIcon className="w-6 h-6 text-primary" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(57,187,166,0.18),transparent_42%),radial-gradient(circle_at_bottom_right,_rgba(59,130,246,0.14),transparent_36%)]" />
+          <div className="relative z-10 flex h-full flex-col">
+            <header className="flex items-start justify-between border-b border-border/40 p-4">
+              <div className="flex items-start gap-3">
+                <div className="rounded-full bg-primary/10 p-2.5 ring-1 ring-primary/20">
+                  <PravIcon className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg">Prav</h3>
-                  <p className="text-sm text-muted-foreground">AI Companion</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary/85">
+                    Guided site navigation
+                  </p>
+                  <h3 className="mt-2 text-base font-semibold">Praverse Site Guide</h3>
+                  <p className="mt-1 max-w-[250px] text-xs leading-relaxed text-muted-foreground">
+                    Deterministic website guidance for pages, offerings,
+                    founder insights, and contact routes.
+                  </p>
                 </div>
               </div>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full"
-                onClick={() => setIsOpen(false)}
-              >
-                <X className="h-4 w-4" />
-              </Button>
+              <div className="flex items-center gap-1">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full hover:bg-background/40"
+                  onClick={minimizeGuide}
+                  aria-label="Minimize site guide"
+                >
+                  <Minus className="h-4 w-4" />
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full hover:bg-background/40"
+                  onClick={closeGuide}
+                  aria-label="Close site guide"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
             </header>
 
             <div
               ref={scrollAreaRef}
-              className="flex-grow overflow-y-auto space-y-4 p-4"
+              className="flex-1 space-y-4 overflow-y-auto p-4"
             >
-              {history.map((msg, index) => (
+              {history.map((entry) => (
                 <div
-                  key={index}
-                  className={`flex gap-2.5 items-start ${msg.role === "user" ? "justify-end" : ""}`}
+                  key={entry.id}
+                  className={`flex ${entry.role === "user" ? "justify-end" : "justify-start"}`}
                 >
-                  {msg.role === "model" && (
-                    <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
-                      <PravIcon className="h-5 w-5 text-primary" />
-                    </div>
-                  )}
                   <div
-                    className={`max-w-[85%] rounded-xl px-4 py-2.5 text-sm whitespace-pre-wrap ${
-                      msg.role === "user"
-                        ? "bg-primary text-primary-foreground rounded-br-none"
-                        : "bg-muted rounded-bl-none"
+                    className={`max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-7 shadow-sm ${
+                      entry.role === "user"
+                        ? "rounded-br-md bg-primary text-primary-foreground"
+                        : "rounded-bl-md border border-border/50 bg-background/45 text-foreground backdrop-blur-sm"
                     }`}
                   >
-                    {msg.content}
-                    {loading &&
-                      msg.role === "model" &&
-                      index === history.length - 1 && (
-                        <span className="inline-block w-1.5 h-1.5 bg-current rounded-full ml-1 animate-pulse" />
-                      )}
+                    {entry.content}
+                    {entry.role === "guide" && (
+                      <MessageActions
+                        suggestions={entry.suggestions}
+                        onNavigate={closeGuide}
+                      />
+                    )}
                   </div>
                 </div>
               ))}
             </div>
 
-            <footer className="p-4 border-t border-border/20 flex-shrink-0">
-              <div className="relative w-full">
+            <div className="border-t border-border/40 bg-background/20 p-4">
+              <div className="mb-3 flex flex-wrap gap-2">
+                {quickActions.map((action) => (
+                  <button
+                    key={action.label}
+                    type="button"
+                    onClick={() => submitQuery(action.query)}
+                    className="rounded-full border border-border/50 bg-background/55 px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-primary/35 hover:bg-primary/10 hover:text-primary"
+                  >
+                    {action.label}
+                  </button>
+                ))}
+              </div>
+              <div className="relative">
                 <Input
-                  placeholder="Ask about our labs..."
+                  ref={inputRef}
                   value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                  className="pr-10 bg-muted border-0 focus-visible:ring-primary"
-                  disabled={loading}
+                  onChange={(event) => setMessage(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter") {
+                      event.preventDefault();
+                      submitQuery(message);
+                    }
+                  }}
+                  placeholder={`Ask about pages, offerings, ${MENNIE_NAME}, or contact...`}
+                  aria-label="Ask the site guide a question"
+                  className="h-12 rounded-2xl border-border/60 bg-background/55 pr-11 focus-visible:ring-primary focus-visible:ring-offset-0"
                 />
                 <Button
+                  type="button"
                   variant="ghost"
                   size="icon"
-                  className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full"
-                  onClick={handleSend}
-                  disabled={!message.trim() || loading}
+                  className="absolute right-1 top-1/2 h-9 w-9 -translate-y-1/2 rounded-full hover:bg-primary/10"
+                  onClick={() => submitQuery(message)}
+                  disabled={!message.trim()}
+                  aria-label="Send question"
                 >
-                  {loading ? (
-                    <Sparkles className="h-4 w-4 animate-pulse" />
-                  ) : (
-                    <CornerDownLeft className="h-4 w-4" />
-                  )}
+                  <SendHorizonal className="h-4 w-4" />
                 </Button>
               </div>
-            </footer>
+              {isKeyboardHintVisible && (
+                <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
+                  <Sparkles className="h-3.5 w-3.5 text-primary" />
+                  <span>Tip: press Ctrl+K to open this guide from anywhere on the site.</span>
+                </div>
+              )}
+            </div>
           </div>
-        </motion.div>
+        </motion.section>
       )}
     </AnimatePresence>
   );

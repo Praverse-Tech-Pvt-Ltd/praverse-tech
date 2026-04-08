@@ -1,13 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { AnimatedItem, AnimatedSection } from "@/components/common/AnimatedSection";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import JoinWaitlistButton from "@/components/common/JoinWaitlistButton";
-import { WaitlistDialog } from "@/components/healthmate/WaitlistDialog";
 import { CheckCircle2 } from "lucide-react";
 
 const useCases = [
@@ -35,8 +32,6 @@ const integrationChips = [
 ];
 
 export function FinanceManagementIndustry() {
-  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
-
   return (
     <div className="bg-background">
       <AnimatedSection className="section-padding-sm bg-muted" amount={0.45} staggerChildren={0.1}>
@@ -54,11 +49,11 @@ export function FinanceManagementIndustry() {
           </AnimatedItem>
           <AnimatedItem className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="focus-ring">
-              <Link href="/contact">Talk to Us</Link>
+              <Link href="/contact">Discuss a Project</Link>
             </Button>
-            <WaitlistDialog open={isWaitlistOpen} onOpenChange={setIsWaitlistOpen}>
-              <JoinWaitlistButton onClick={() => setIsWaitlistOpen(true)}>Join Waitlist</JoinWaitlistButton>
-            </WaitlistDialog>
+            <Button asChild size="lg" variant="outline" className="focus-ring">
+              <Link href="/contact">Contact Us</Link>
+            </Button>
           </AnimatedItem>
         </div>
       </AnimatedSection>
@@ -135,11 +130,11 @@ export function FinanceManagementIndustry() {
               </p>
               <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
                 <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 focus-ring">
-                  <Link href="/contact">Talk to Us</Link>
+                  <Link href="/contact">Discuss a Project</Link>
                 </Button>
-                <WaitlistDialog open={isWaitlistOpen} onOpenChange={setIsWaitlistOpen}>
-                  <JoinWaitlistButton onClick={() => setIsWaitlistOpen(true)}>Join Waitlist</JoinWaitlistButton>
-                </WaitlistDialog>
+                <Button asChild size="lg" variant="outline" className="border-white bg-transparent text-white hover:bg-white hover:text-primary focus-ring">
+                  <Link href="/contact">Contact Us</Link>
+                </Button>
               </div>
             </div>
           </AnimatedItem>

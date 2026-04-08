@@ -3,13 +3,21 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Handshake, Lightbulb, Rocket, ShieldCheck } from 'lucide-react';
 import { InnovateForm } from '@/components/innovate/InnovateForm';
 import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
+import { createPageMetadata } from '@/lib/site';
+
+export const metadata = createPageMetadata({
+  title: "Innovate With Us",
+  description:
+    "Submit a serious deep-tech idea or early product concept for review by the Praverse Tech team.",
+  path: "/innovate",
+});
 
 const processSteps = [
-    { name: 'Submit Idea', description: 'Fill out our confidential pitch form with your concept.' },
+    { name: 'Submit Brief', description: 'Fill out our confidential pitch form with your concept.' },
     { name: 'Review', description: 'Our expert panel reviews every submission for feasibility, impact, and alignment.' },
-    { name: 'Collaborate', description: 'If selected, we will reach out to schedule a meeting and discuss next steps.' },
+    { name: 'Working Session', description: 'If there is a fit, we schedule a focused conversation on scope, risks, and next steps.' },
     { name: 'Prototype', description: 'We work with you to build a proof-of-concept or minimum viable product.' },
-    { name: 'Launch', description: 'Leverage our ecosystem to take your innovation to market.' },
+    { name: 'Launch Plan', description: 'We align the path from prototype to productization and go-to-market execution.' },
   ];
   
 
@@ -34,7 +42,7 @@ export default function InnovatePage() {
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
                     <AnimatedItem direction="left" className="space-y-6">
-                        <h2 className="text-3xl font-bold md:text-4xl">Why Collaborate with Praverse?</h2>
+                        <h2 className="text-3xl font-bold md:text-4xl">Why build with Praverse?</h2>
                         <p className="text-base text-muted-foreground md:text-lg">
                             We're more than just a technology provider; we're a launchpad for deep-tech innovation.
                         </p>
@@ -53,8 +61,8 @@ export default function InnovatePage() {
                                     <Handshake className="h-6 w-6 text-primary"/>
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold">Founder Mentorship</h3>
-                                    <p className="text-sm text-muted-foreground">Gain direct access to our founder and leadership for strategic guidance, architectural reviews, and go-to-market planning.</p>
+                                    <h3 className="font-semibold">Founder Access</h3>
+                                    <p className="text-sm text-muted-foreground">Gain direct access to founder-level guidance for strategic direction, architecture reviews, and go-to-market planning.</p>
                                 </div>
                             </li>
                              <li className="flex items-start gap-4">

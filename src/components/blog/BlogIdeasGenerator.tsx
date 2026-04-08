@@ -6,6 +6,7 @@ import {
   type GenerateBlogIdeasOutput,
 } from "@/ai/flows/generate-blog-ideas";
 import { saveBlogIdeasGeneration } from "@/app/actions";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Wand2 } from "lucide-react";
 import {
@@ -42,24 +43,27 @@ export function BlogIdeasGenerator() {
   const response = output;
 
   return (
-    <Card className="bg-primary/5">
+    <Card className="rounded-[28px] border-border/60 bg-card/55 shadow-xl backdrop-blur-sm">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Wand2 className="h-6 w-6 text-primary" />
-          Stuck for Ideas?
+        <Badge className="w-fit bg-primary/15 text-primary ring-1 ring-primary/25">
+          Insight lab
+        </Badge>
+        <CardTitle className="flex items-center gap-2 text-2xl">
+          <Wand2 className="h-5 w-5 text-primary" />
+          Explore blog directions
         </CardTitle>
-        <CardDescription>
-          Let our AI help you brainstorm your next blog post. Select a topic and
-          generate ideas.
+        <CardDescription className="text-sm leading-7 md:text-base">
+          Use the in-site generator to spark new founder notes, healthcare AI
+          perspectives, or applied intelligence article angles.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex flex-col sm:flex-row gap-4">
           <Select onValueChange={setTopic} defaultValue={topic}>
-            <SelectTrigger className="w-full sm:w-[200px]">
+            <SelectTrigger className="h-12 w-full rounded-2xl border-border/60 bg-background/55 px-4 sm:w-[220px]">
               <SelectValue placeholder="Select a topic" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="rounded-2xl border-border/60 bg-popover/95 backdrop-blur-xl">
               <SelectItem value="AI in Pharma">AI in Pharma</SelectItem>
               <SelectItem value="Healthcare Innovation">
                 Healthcare Innovation
@@ -69,21 +73,30 @@ export function BlogIdeasGenerator() {
               </SelectItem>
             </SelectContent>
           </Select>
-          <Button onClick={handleGenerate} disabled={generating}>
+          <Button
+            onClick={handleGenerate}
+            disabled={generating}
+            className="h-12 rounded-full px-6"
+          >
             {generating ? "Generating..." : "Generate Ideas"}
           </Button>
         </div>
 
         {generating && !response && (
-          <p className="text-sm text-muted-foreground">Generating...</p>
+          <p className="text-sm text-muted-foreground">
+            Generating a few fresh directions...
+          </p>
         )}
 
         {response && (
-          <div className="space-y-2 pt-4">
-            <h4 className="font-semibold">Here are some ideas:</h4>
-            <ul className="list-disc list-inside space-y-1">
+          <div className="space-y-3 pt-4">
+            <h4 className="font-semibold">Suggested angles</h4>
+            <ul className="space-y-3">
               {response.ideas.map((idea, index) => (
-                <li key={index} className="text-sm">
+                <li
+                  key={index}
+                  className="rounded-2xl border border-border/50 bg-background/40 px-4 py-3 text-sm leading-7 text-muted-foreground"
+                >
                   {idea}
                 </li>
               ))}

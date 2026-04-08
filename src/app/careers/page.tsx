@@ -16,8 +16,16 @@ import {
   AnimatedItem,
   AnimatedSection,
 } from "@/components/common/AnimatedSection";
+import { createPageMetadata } from "@/lib/site";
 
 const heroImage = PlaceHolderImages.find((p) => p.id === "careers-hero");
+
+export const metadata = createPageMetadata({
+  title: "Careers",
+  description:
+    "Career opportunities for builders interested in AI products, deep-tech systems, and applied research at Praverse Tech.",
+  path: "/careers",
+});
 
 const whyWorkWithUs = [
   {
@@ -36,7 +44,7 @@ const whyWorkWithUs = [
     icon: <Code className="h-8 w-8 text-primary" />,
     title: "Grow With the Best",
     description:
-      "We are a culture of learners and builders. Collaborate with and get mentored by experts in deep tech and product development.",
+      "We are a culture of learners and builders. Work alongside experienced experts in deep tech and product development.",
   },
 ];
 

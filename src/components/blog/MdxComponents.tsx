@@ -30,6 +30,15 @@ export const MdxComponents = {
   p: ({ className, ...props }: ComponentProps<'p'>) => (
     <p className={cn('leading-7 [&:not(:first-child)]:mt-6', className)} {...props} />
   ),
+  blockquote: ({ className, ...props }: ComponentProps<'blockquote'>) => (
+    <blockquote
+      className={cn(
+        'my-6 rounded-r-lg border-l-4 border-primary/70 bg-muted/40 px-5 py-4 italic text-muted-foreground',
+        className
+      )}
+      {...props}
+    />
+  ),
   ul: ({ className, ...props }: ComponentProps<'ul'>) => (
     <ul className={cn('my-6 ml-6 list-disc [&>li]:mt-2', className)} {...props} />
   ),

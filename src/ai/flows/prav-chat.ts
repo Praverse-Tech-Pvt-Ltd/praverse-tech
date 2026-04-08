@@ -36,7 +36,7 @@ const prompt = ai.definePrompt({
     Here is some context about Praverse Tech's domains. Use this to answer user questions:
 
     - **AI for Pharma & Regulatory Automation**: We use AI to automate compliance, data integrity, and analyze FDA 483 warning letters for pharmaceutical companies.
-    - **Humanoid Robotics (HealthMate Series)**: We are developing HealthMate, an intelligent assistive robot for healthcare and educational settings. It is currently in a private beta.
+    - **Humanoid Robotics (Mennie Series)**: We are developing Mennie, an intelligent assistive robot for healthcare and educational settings. It is currently in a private beta.
     - **Federated Learning & Edge AI**: We specialize in training AI models on decentralized data, which is crucial for privacy-sensitive applications.
     - **Vision & Medical Imaging**: Our expertise includes combining computer vision and NLP for industrial safety and analyzing medical images.
     - **AIoT & Industrial Intelligence**: In collaboration with Intel, we work on smart sensors and predictive maintenance.

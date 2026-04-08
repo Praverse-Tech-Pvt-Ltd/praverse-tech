@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { MediaDialog } from './MediaDialog';
 import { BriefingDialog } from './BriefingDialog';
 import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
+import { MENNIE_NAME } from "@/lib/mennie";
 
 export function PressCTA() {
   const [isMediaOpen, setIsMediaOpen] = useState(false);
@@ -21,9 +22,9 @@ export function PressCTA() {
             <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-secondary/10" />
             <div className="relative z-10 space-y-3">
             <Badge variant="secondary" className="mx-auto mb-2 w-fit">Press & Partners</Badge>
-            <CardTitle className="text-3xl font-bold">Collaborate with us</CardTitle>
+            <CardTitle className="text-3xl font-bold">Press and partnership requests</CardTitle>
             <CardDescription className="mx-auto max-w-2xl">
-              We are actively seeking press and strategic partners to join us on our journey.
+              Reach out if you are requesting briefing materials, media information, or a {MENNIE_NAME} partnership conversation.
             </CardDescription>
             </div>
           </CardHeader>

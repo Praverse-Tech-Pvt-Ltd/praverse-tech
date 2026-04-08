@@ -25,6 +25,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "../ui/checkbox";
 import { Textarea } from "../ui/textarea";
 import { submitHealthMateWaitlist } from "@/app/actions";
+import { MENNIE_FULL_NAME, MENNIE_NAME, MENNIE_WAITLIST_LABEL } from "@/lib/mennie";
 
 const waitlistSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -88,11 +89,11 @@ export function WaitlistDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Join the HealthMate Waitlist</DialogTitle>
+          <DialogTitle>Join the {MENNIE_NAME} Waitlist</DialogTitle>
           <DialogDescription>
-            Be the first to know when HealthMate is available.
+            Be the first to know when {MENNIE_NAME} is ready. {MENNIE_FULL_NAME}
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -160,7 +161,7 @@ export function WaitlistDialog({
                   <FormLabel>Intended Use Case</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="How do you envision using HealthMate?"
+                      placeholder={`How do you envision using ${MENNIE_NAME}?`}
                       {...field}
                     />
                   </FormControl>
@@ -182,7 +183,7 @@ export function WaitlistDialog({
                   <div className="space-y-1 leading-none">
                     <FormLabel>
                       I agree to join the waitlist and receive communications
-                      about HealthMate.
+                      about {MENNIE_NAME}.
                     </FormLabel>
                     <FormMessage />
                   </div>
@@ -190,7 +191,7 @@ export function WaitlistDialog({
               )}
             />
             <Button type="submit" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? "Joining..." : "Join Waitlist"}
+              {form.formState.isSubmitting ? "Joining..." : MENNIE_WAITLIST_LABEL}
             </Button>
           </form>
         </Form>

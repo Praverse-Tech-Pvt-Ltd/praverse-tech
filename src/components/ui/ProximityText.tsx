@@ -10,15 +10,15 @@ interface ProximityTextProps {
 }
 
 export function ProximityText({ children, className }: ProximityTextProps) {
-    const containerRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLSpanElement>(null);
 
     if (typeof children !== "string") {
         console.warn("ProximityText only accepts a string as children.");
-        return <p className={className}>{children}</p>;
+        return <span className={className}>{children}</span>;
     }
 
     return (
-        <div ref={containerRef} style={{ position: 'relative', display: 'inline' }}>
+        <span ref={containerRef} style={{ position: 'relative', display: 'inline' }}>
             <VariableProximity
                 label={children}
                 className={cn("", className)}
@@ -28,6 +28,6 @@ export function ProximityText({ children, className }: ProximityTextProps) {
                 radius={150}
                 falloff="gaussian"
             />
-        </div>
+        </span>
     );
 }

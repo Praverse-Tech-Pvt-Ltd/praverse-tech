@@ -1,10 +1,19 @@
 
 import { DOMAINS } from '@/lib/data';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
+import { createPageMetadata } from '@/lib/site';
+
+export const metadata = createPageMetadata({
+  title: "Domains",
+  description:
+    "Current offerings and research programs across healthcare AI, pharma intelligence, and industrial systems.",
+  path: "/domains",
+});
 
 export default function DomainsPage() {
   return (
@@ -16,7 +25,7 @@ export default function DomainsPage() {
           </AnimatedItem>
           <AnimatedItem delay={0.1}>
           <p className="mt-4 mx-auto max-w-2xl text-base text-muted-foreground md:text-lg">
-            We are a multi-disciplinary team of experts pushing the boundaries of what's possible in intelligent systems.
+            A clear view of what Praverse Tech offers today and which programs remain in research or exploratory development.
           </p>
           </AnimatedItem>
         </div>
@@ -32,7 +41,10 @@ export default function DomainsPage() {
                       <div className="rounded-full bg-primary/10 p-3">
                         <domain.icon className={cn("h-8 w-8 transition-colors duration-300 group-hover:text-primary", domain.color)} />
                       </div>
-                      <CardTitle className="text-xl">{domain.title}</CardTitle>
+                      <div className="space-y-2">
+                        <Badge variant="secondary">{domain.status}</Badge>
+                        <CardTitle className="text-xl">{domain.title}</CardTitle>
+                      </div>
                     </div>
                   </CardHeader>
                   <CardDescription className="px-6 pb-6 text-sm flex-grow">

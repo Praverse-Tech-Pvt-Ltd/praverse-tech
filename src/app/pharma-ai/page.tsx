@@ -18,6 +18,14 @@ import {
   Layers,
   Search,
 } from "lucide-react";
+import { createPageMetadata } from "@/lib/site";
+
+export const metadata = createPageMetadata({
+  title: "Pharma AI",
+  description:
+    "AI-assisted regulatory and quality workflows for pharmaceutical teams working in controlled environments.",
+  path: "/pharma-ai",
+});
 import Link from "next/link";
 import {
   AnimatedItem,

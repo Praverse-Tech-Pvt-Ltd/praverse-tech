@@ -1,12 +1,8 @@
 
 'use client';
 import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
-import Link from 'next/link';
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { DOMAINS } from '@/lib/data';
+import { CURRENT_OFFERINGS } from '@/lib/data';
 import MagicBento from './MagicBento';
-import { ArrowRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { ProximityText } from '@/components/ui/ProximityText';
 
 export function Domains() {
@@ -20,18 +16,19 @@ export function Domains() {
       <div className="container">
         <AnimatedItem className="mx-auto mb-20 max-w-2xl text-center">
           <h2 className="prose-heading">
-            Our Core Innovation Domains
+            What We Offer Today
           </h2>
           <p className="mt-6 text-base text-muted-foreground md:text-lg leading-relaxed">
             <ProximityText>
-              Multi-disciplinary expertise pushing the boundaries of intelligent systems across regulated industries and advanced robotics.
+              Current offerings across healthcare, pharma, and industrial intelligence, with active programs surfaced ahead of longer-horizon research.
             </ProximityText>
           </p>
         </AnimatedItem>
 
         <AnimatedItem>
           <MagicBento
-            textAutoHide={true}
+            items={CURRENT_OFFERINGS}
+            textAutoHide={false}
             enableStars
             enableSpotlight
             enableBorderGlow={true}

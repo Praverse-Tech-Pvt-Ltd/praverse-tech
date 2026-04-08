@@ -1,5 +1,6 @@
 "use server";
 
+import { headers } from "next/headers";
 import { z } from "zod";
 import {
   saveBlogIdeas,
@@ -10,6 +11,8 @@ import {
   saveNewsletterSubscriber,
   saveWaitlistSubmission,
 } from "@/lib/forms-db";
+import { isInquiryEmailConfigured, sendInquiryEmail } from "@/lib/inquiry-email";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 const newsletterSchema = z.object({
   email: z.string().email(),
@@ -33,12 +36,25 @@ export async function subscribeToNewsletter(
   return { success: true, message: "Successfully subscribed!" };
 }
 
+const trimmedOptionalString = z
+  .string()
+  .optional()
+  .transform((value) => {
+    const trimmed = value?.trim();
+    return trimmed ? trimmed : undefined;
+  });
+
 const contactFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters."),
-  email: z.string().email("Invalid email address."),
-  company: z.string().optional(),
-  message: z.string().min(10, "Message must be at least 10 characters."),
-  interest: z.string(),
+  name: z.string().trim().min(2, "Name must be at least 2 characters."),
+  email: z.string().trim().email("Invalid email address."),
+  company: trimmedOptionalString,
+  message: z
+    .string()
+    .trim()
+    .min(10, "Message must be at least 10 characters."),
+  interest: trimmedOptionalString,
+  website: z.string().optional().default(""),
+  startedAt: z.coerce.number().optional(),
 });
 
 export async function submitContactForm(
@@ -50,10 +66,73 @@ export async function submitContactForm(
     return { success: false, message: "Invalid form data." };
   }
 
+  const submission = validatedFields.data;
+
+  if (submission.website.trim().length > 0) {
+    return { success: true, message: "Your message has been submitted!" };
+  }
+
+  if (submission.startedAt && Date.now() - submission.startedAt < 1500) {
+    return {
+      success: false,
+      message: "Please take a moment to complete the form before submitting.",
+    };
+  }
+
+  const requestHeaders = await headers();
+  const forwardedFor = requestHeaders.get("x-forwarded-for");
+  const realIp = requestHeaders.get("x-real-ip");
+  const ipAddress =
+    forwardedFor?.split(",")[0]?.trim() || realIp || "unknown-client";
+  const rateLimit = checkRateLimit(`contact:${ipAddress}`, {
+    limit: 5,
+    windowMs: 15 * 60 * 1000,
+  });
+
+  if (!rateLimit.allowed) {
+    return {
+      success: false,
+      message:
+        "You've reached the inquiry limit for now. Please try again in a little while.",
+    };
+  }
+
+  if (!isInquiryEmailConfigured()) {
+    console.error("Inquiry email transport is not configured for this environment.");
+    return {
+      success: false,
+      message:
+        "Inquiry delivery is not configured in this environment yet. Please set the SMTP settings or email inquiry@praversetech.com directly.",
+    };
+  }
+
   try {
-    await saveContactSubmission(validatedFields.data);
-  } catch {
-    return { success: false, message: "Could not save contact submission." };
+    await sendInquiryEmail({
+      name: submission.name,
+      email: submission.email,
+      company: submission.company,
+      interest: submission.interest,
+      message: submission.message,
+    });
+  } catch (error) {
+    console.error("Failed to send inquiry email", error);
+    return {
+      success: false,
+      message:
+        "We couldn't deliver your inquiry right now. Please try again shortly or email inquiry@praversetech.com directly.",
+    };
+  }
+
+  try {
+    await saveContactSubmission({
+      name: submission.name,
+      email: submission.email,
+      company: submission.company,
+      message: submission.message,
+      interest: submission.interest ?? "Not specified",
+    });
+  } catch (error) {
+    console.error("Failed to save contact submission", error);
   }
 
   return { success: true, message: "Your message has been submitted!" };

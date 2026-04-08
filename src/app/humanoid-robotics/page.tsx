@@ -13,10 +13,18 @@ import {
   AnimatedItem,
   AnimatedSection,
 } from "@/components/common/AnimatedSection";
+import { createPageMetadata } from "@/lib/site";
 
 const heroImage = PlaceHolderImages.find((p) => p.id === "humanoid-hero");
 const assistImage = PlaceHolderImages.find((p) => p.id === "humanoid-assist");
 const virtualImage = PlaceHolderImages.find((p) => p.id === "humanoid-virtual");
+
+export const metadata = createPageMetadata({
+  title: "Humanoid Robotics",
+  description:
+    "Humanoid robotics concepts and care-intelligence explorations from Praverse Tech.",
+  path: "/humanoid-robotics",
+});
 
 const features = [
   {

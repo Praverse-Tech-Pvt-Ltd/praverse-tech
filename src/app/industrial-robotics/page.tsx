@@ -4,6 +4,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Settings, Gauge, Network, Eye, Wrench, BarChart3, Factory, Beaker, Building2, FlaskConical, ShieldCheck, Cog, Target, Workflow, Zap } from 'lucide-react';
 import Link from 'next/link';
 import { AnimatedItem, AnimatedSection } from '@/components/common/AnimatedSection';
+import { createPageMetadata } from '@/lib/site';
+
+export const metadata = createPageMetadata({
+  title: "Industrial Robotics",
+  description:
+    "Industrial robotics and automation systems designed for precision, monitoring, and production operations.",
+  path: "/industrial-robotics",
+});
 
 const capabilities = [
   {

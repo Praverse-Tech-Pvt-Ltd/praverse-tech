@@ -1,49 +1,87 @@
+import Link from "next/link";
+import { LegalPage } from "@/components/legal/LegalPage";
+import {
+  COMPANY_EMAIL,
+  COMPANY_PHONE_DISPLAY,
+  COMPANY_PHONE_TEL,
+  LEGAL_LAST_UPDATED,
+  createPageMetadata,
+} from "@/lib/site";
+import {
+  MENNIE_LEGAL_LABEL,
+  MENNIE_NAME,
+} from "@/lib/mennie";
 
-'use client';
-
-import { useState, useEffect } from 'react';
-import { AnimatedSection } from '@/components/common/AnimatedSection';
+export const metadata = createPageMetadata({
+  title: `${MENNIE_NAME} Privacy Policy`,
+  description:
+    `Privacy terms covering ${MENNIE_NAME} waitlist, briefing, and media request submissions.`,
+  path: "/healthmate-privacy",
+  noIndex: true,
+});
 
 export default function HealthmatePrivacyPage() {
-  const [currentDate, setCurrentDate] = useState('');
-
-  useEffect(() => {
-    setCurrentDate(new Date().toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    }));
-  }, []);
-
   return (
-    <AnimatedSection className="section-padding bg-background">
-      <div className="container mx-auto max-w-5xl">
-        <header className="mb-8 rounded-lg p-8 bg-card/40 backdrop-blur-sm">
-          <h1 className="text-3xl font-headline mb-2">HealthMate Privacy Policy</h1>
-          <p className="text-sm text-muted-foreground">Last updated: {currentDate}</p>
-          <p className="mt-4 text-base text-muted-foreground max-w-2xl">This is a placeholder privacy policy for HealthMate. We will publish a comprehensive policy before public launch.</p>
-        </header>
+    <LegalPage
+      title={`${MENNIE_NAME} Privacy Policy`}
+      description={`This policy applies to information submitted through ${MENNIE_NAME} waitlist, briefing, and media request workflows during pre-release and pilot phases.`}
+      lastUpdated={LEGAL_LAST_UPDATED}
+      eyebrow={`${MENNIE_NAME} Privacy`}
+      sections={[
+        { id: "intro", label: "Scope" },
+        { id: "collection", label: "Data We Collect" },
+        { id: "use", label: "How We Use Information" },
+        { id: "sharing", label: "Sharing and Confidentiality" },
+        { id: "retention", label: "Retention" },
+        { id: "contact", label: "Contact" },
+      ]}
+      relatedLinks={[
+        { href: "/healthmate-terms", label: MENNIE_LEGAL_LABEL },
+        { href: "/healthmate", label: MENNIE_NAME },
+      ]}
+    >
+      <h2 id="intro">1. Scope</h2>
+      <p>
+        {MENNIE_NAME} is a Praverse Tech initiative currently operating in
+        pre-release and evaluation phases. This policy covers information
+        submitted through {MENNIE_NAME}-specific website forms.
+      </p>
 
-        <main className="prose dark:prose-invert bg-card/0 p-6 rounded-lg">
-          <h2 id="intro">1. Introduction</h2>
-          <p>This is a placeholder Privacy Policy for the HealthMate product by Praverse Tech Pvt Ltd.</p>
+      <h2 id="collection">2. Data We Collect</h2>
+      <ul>
+        <li>Waitlist details such as name, email, organization, role, and use case.</li>
+        <li>Briefing requests including organizational and website information.</li>
+        <li>Media or press requests related to {MENNIE_NAME} communications.</li>
+      </ul>
 
-          <h2 id="collection">2. Data Collection (Pre-Launch)</h2>
-          <p>During our stealth phase, we collect personal information through our waitlist and briefing requests.</p>
+      <h2 id="use">3. How We Use Information</h2>
+      <ul>
+        <li>To manage launch communications and product interest.</li>
+        <li>To evaluate pilot, research, partnership, or press requests.</li>
+        <li>To coordinate pre-release discussions with approved parties.</li>
+      </ul>
 
-          <h2 id="use">3. Use of Information</h2>
-          <p>Information is used to manage launch communications, partnerships, and evaluations. We do not sell this data.</p>
+      <h2 id="sharing">4. Sharing and Confidentiality</h2>
+      <p>
+        We do not sell {MENNIE_NAME} inquiry data. Access is limited to personnel
+        and service providers supporting pre-release operations, review, and
+        communication.
+      </p>
 
-          <h2 id="security">4. Security</h2>
-          <p>We implement strong security measures and store data in secured Firestore with restricted access.</p>
+      <h2 id="retention">5. Retention</h2>
+      <p>
+        We retain {MENNIE_NAME} request data for as long as reasonably necessary to
+        manage pre-release communications, evaluations, and legal or
+        operational obligations.
+      </p>
 
-          <h2 id="post">5. Post-Launch Policy</h2>
-          <p>A comprehensive privacy policy will be published upon public launch, compliant with healthcare regulations.</p>
-
-          <h2 id="contact">Contact Us</h2>
-          <p>Questions? Contact <a href="mailto:pratham@praversetech.com">pratham@praversetech.com</a></p>
-        </main>
-      </div>
-    </AnimatedSection>
+      <h2 id="contact">6. Contact</h2>
+      <p>
+        For {MENNIE_NAME} privacy questions, contact{" "}
+        <a href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</a> or call{" "}
+        <a href={COMPANY_PHONE_TEL}>{COMPANY_PHONE_DISPLAY}</a>. You can also
+        review the main <Link href="/privacy">Privacy Policy</Link>.
+      </p>
+    </LegalPage>
   );
 }

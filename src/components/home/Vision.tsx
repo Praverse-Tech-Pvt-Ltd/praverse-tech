@@ -4,7 +4,6 @@ import {
   AnimatedItem,
   AnimatedSection,
 } from "@/components/common/AnimatedSection";
-import { HeartPulse, Crosshair, TrendingUp } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { ProximityText } from "@/components/ui/ProximityText";
 
@@ -35,19 +34,25 @@ export function Vision() {
             )}
           </AnimatedItem>
           <AnimatedItem direction="right" className="space-y-6 lg:space-y-8">
-            <h2 className="prose-heading">Our Manifesto</h2>
+            <h2 className="prose-heading">What Praverse Does</h2>
             <div className="space-y-4">
               <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
                 <ProximityText>
-                  AI should not replace people — it should amplify human
-                  capability.
+                  We build AI products and applied intelligent systems for teams
+                  working in healthcare, pharma, and industrial operations.
                 </ProximityText>
               </p>
               <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
                 <ProximityText>
-                  We fuse deep learning, robotics, and ethical intelligence to
-                  deliver systems that enhance precision, compassion,
-                  and efficiency for tomorrow's industries.
+                  Our work spans product strategy, workflow design, model
+                  development, and deployment thinking so ideas can move beyond
+                  prototypes into real operating environments.
+                </ProximityText>
+              </p>
+              <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
+                <ProximityText>
+                  We keep the long-horizon deep-tech vision, but we lead with
+                  what we can build, validate, and deliver now.
                 </ProximityText>
               </p>
             </div>
