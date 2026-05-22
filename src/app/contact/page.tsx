@@ -89,7 +89,7 @@ export default function ContactPage() {
                   <div>
                       <h3 className="font-semibold">Call Us</h3>
                       <p className="text-muted-foreground text-sm mt-1">
-                        +91 9313247264
+                        91 9313247264
                       </p>
                   </div>
                 </div>

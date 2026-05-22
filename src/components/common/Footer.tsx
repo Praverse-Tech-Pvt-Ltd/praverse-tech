@@ -46,8 +46,8 @@ export function Footer() {
     },
     {
       icon: <Phone size={18} className="text-[#3ca2fa]" />,
-      text: "+91 86373 73116",
-      href: "tel:+918637373116",
+      text: "91 9313247264",
+      href: "tel:+919313247264",
     },
     {
       icon: <MapPin size={18} className="text-[#3ca2fa]" />,

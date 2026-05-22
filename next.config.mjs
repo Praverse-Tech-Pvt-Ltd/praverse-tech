@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Ensure browser source maps are not generated in production
+  productionBrowserSourceMaps: false,
   images: {
     remotePatterns: [
       {
