@@ -17,7 +17,7 @@ const pipelineSteps = [
 
 export function MachineLearningShowcase() {
   return (
-    <AnimatedSection className="section-padding bg-background" staggerChildren={0.2}>
+    <AnimatedSection id="ai-core" className="section-padding bg-background" staggerChildren={0.2}>
       <div className="container">
         <div className="grid items-center gap-12 md:grid-cols-2 lg:gap-16">
           <AnimatedItem direction="left" className="space-y-6 lg:space-y-8">

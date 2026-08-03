@@ -1,0 +1,84 @@
+
+> nextn@0.1.0 dev
+> next dev -p 9003
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:9003
+- Network:       http://192.168.1.14:9003
+- Environments: .env
+✓ Ready in 686ms
+
+○ Compiling / ...
+ GET / 200 in 5.2s (next.js: 3.1s, application-code: 2.1s)
+ GET / 200 in 7.7s (next.js: 5.7s, application-code: 1975ms)
+ GET / 200 in 51ms (next.js: 5ms, application-code: 46ms)
+ GET /healthmate 200 in 5.7s (next.js: 1277ms, application-code: 4.4s)
+ GET /enterprise 200 in 1297ms (next.js: 1258ms, application-code: 39ms)
+✓ Compiled in 193ms
+✓ Compiled in 95ms
+✓ Compiled in 107ms
+ GET /enterprise 200 in 75ms (next.js: 18ms, application-code: 57ms)
+✓ Compiled in 817ms
+ GET /enterprise 200 in 541ms (next.js: 366ms, application-code: 175ms)
+ GET /enterprise 200 in 134ms (next.js: 5ms, application-code: 129ms)
+ GET /enterprise 200 in 84ms (next.js: 29ms, application-code: 55ms)
+ GET /enterprise 200 in 86ms (next.js: 5ms, application-code: 80ms)
+ GET /enterprise 200 in 85ms (next.js: 54ms, application-code: 31ms)
+✓ Compiled in 191ms
+ GET /enterprise 500 in 1119ms (next.js: 970ms, application-code: 149ms)
+ GET /enterprise 500 in 45ms (next.js: 22ms, application-code: 23ms)
+ GET /enterprise 500 in 54ms (next.js: 34ms, application-code: 20ms)
+ GET /enterprise 200 in 623ms (next.js: 289ms, application-code: 334ms)
+✓ Compiled in 964ms
+✓ Compiled in 592ms
+ GET / 200 in 844ms (next.js: 281ms, application-code: 563ms)
+ GET /enterprise 200 in 148ms (next.js: 14ms, application-code: 134ms)
+ GET / 200 in 95ms (next.js: 3ms, application-code: 92ms)
+ GET / 200 in 527ms (next.js: 3ms, application-code: 523ms)
+ GET /enterprise 200 in 132ms (next.js: 4ms, application-code: 129ms)
+ GET /enterprise 200 in 115ms (next.js: 4ms, application-code: 111ms)
+ GET / 200 in 36ms (next.js: 5ms, application-code: 31ms)
+ GET / 200 in 997ms (next.js: 4ms, application-code: 992ms)
+ GET / 200 in 12ms (next.js: 4ms, application-code: 7ms)
+✓ Compiled in 79ms
+✓ Compiled in 679ms
+ GET / 200 in 872ms (next.js: 309ms, application-code: 562ms)
+ GET / 200 in 651ms (next.js: 5ms, application-code: 646ms)
+✓ Compiled in 69ms
+ GET / 200 in 467ms (next.js: 404ms, application-code: 63ms)
+✓ Compiled in 591ms
+ GET / 200 in 1050ms (next.js: 5ms, application-code: 1045ms)
+✓ Compiled in 142ms
+✓ Compiled in 101ms
+ GET / 200 in 450ms (next.js: 376ms, application-code: 74ms)
+✓ Compiled in 116ms
+ GET / 200 in 1412ms (next.js: 379ms, application-code: 1033ms)
+✓ Compiled in 84ms
+ GET / 200 in 462ms (next.js: 400ms, application-code: 62ms)
+✓ Compiled in 130ms
+ GET / 200 in 513ms (next.js: 403ms, application-code: 110ms)
+ GET / 200 in 63ms (next.js: 2ms, application-code: 61ms)
+ GET / 200 in 1058ms (next.js: 7ms, application-code: 1051ms)
+ GET /contact 200 in 1676ms (next.js: 1622ms, application-code: 54ms)
+ GET /enterprise 200 in 42ms (next.js: 16ms, application-code: 26ms)
+ GET /healthmate 200 in 2.3s (next.js: 98ms, application-code: 2.2s)
+✓ Compiled in 82ms
+ GET /healthmate 200 in 2.0s (next.js: 285ms, application-code: 1739ms)
+✓ Compiled in 86ms
+ GET /healthmate 200 in 1948ms (next.js: 271ms, application-code: 1677ms)
+✓ Compiled in 76ms
+ GET /healthmate 200 in 2000ms (next.js: 258ms, application-code: 1742ms)
+✓ Compiled in 81ms
+ GET /healthmate 200 in 1974ms (next.js: 275ms, application-code: 1700ms)
+✓ Compiled in 122ms
+✓ Compiled in 80ms
+ GET /healthmate 200 in 1947ms (next.js: 279ms, application-code: 1668ms)
+ GET /healthmate 200 in 1640ms (next.js: 4ms, application-code: 1636ms)
+ GET /healthmate 200 in 109ms (next.js: 3ms, application-code: 105ms)
+✓ Compiled in 720ms
+ GET /healthmate 200 in 1584ms (next.js: 28ms, application-code: 1557ms)
+ GET /healthmate 200 in 1951ms (next.js: 267ms, application-code: 1685ms)
+ GET /healthmate 200 in 1614ms (next.js: 4ms, application-code: 1610ms)
+ GET /healthmate 200 in 1645ms (next.js: 4ms, application-code: 1641ms)
+ GET / 200 in 582ms (next.js: 507ms, application-code: 74ms)
+[?25h

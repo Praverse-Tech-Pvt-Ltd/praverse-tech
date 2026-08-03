@@ -3,16 +3,33 @@
 import React, { forwardRef, useMemo, useRef, useEffect, MutableRefObject, CSSProperties, HTMLAttributes } from 'react';
 import { motion } from 'framer-motion';
 
-function useAnimationFrame(callback: () => void) {
+function useAnimationFrame(callback: () => void, containerRef: MutableRefObject<HTMLElement | null>) {
     useEffect(() => {
         let frameId: number;
+        let active = true;
         const loop = () => {
-            callback();
+            if (active) callback();
             frameId = requestAnimationFrame(loop);
         };
         frameId = requestAnimationFrame(loop);
-        return () => cancelAnimationFrame(frameId);
-    }, [callback]);
+
+        const node = containerRef?.current;
+        let observer: IntersectionObserver | undefined;
+        if (node) {
+            observer = new IntersectionObserver(
+                ([entry]) => {
+                    active = entry.isIntersecting;
+                },
+                { threshold: 0 }
+            );
+            observer.observe(node);
+        }
+
+        return () => {
+            cancelAnimationFrame(frameId);
+            observer?.disconnect();
+        };
+    }, [callback, containerRef]);
 }
 
 function useMousePositionRef(containerRef: MutableRefObject<HTMLElement | null>) {
@@ -153,7 +170,7 @@ export const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityPr
             interpolatedSettingsRef.current[index] = newSettings;
             letterRef.style.fontVariationSettings = newSettings;
         });
-    });
+    }, containerRef);
 
     const words = label.split(' ');
     let letterIndex = 0;

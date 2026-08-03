@@ -19,7 +19,7 @@ import { BookOpen, ArrowRight } from 'lucide-react';
 export function ResearchPublications() {
 
   return (
-    <AnimatedSection className="relative py-24 md:py-32 overflow-hidden" staggerChildren={0.12}>
+    <AnimatedSection id="research" className="relative py-24 md:py-32 overflow-hidden" staggerChildren={0.12}>
       {/* Background decoration */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-background to-background" />
       <div className="absolute top-1/2 left-1/4 -z-10 w-96 h-96 bg-primary/10 blur-[120px] rounded-full mix-blend-multiply dark:mix-blend-screen opacity-50" />

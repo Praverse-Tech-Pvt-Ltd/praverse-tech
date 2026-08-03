@@ -1,0 +1,61 @@
+[browser] In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <Home>
+                <div className="flex flex-...">
+                  <main className="flex-1">
+                    <Hero>
+                      <section className="relative f...">
+                        <Iridescence>
+                        <UniverseBackground>
+                        <div>
+                        <div className="container ...">
+                          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} ...>
+                            <div className="mx-auto ma..." style={{opacity:0, ...}} ...>
+                              <NovaAvatar>
+                              <div>
+                              <h1>
+>                             <p
+>                               className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-foreground/90 md:text-xl"
+>                             >
+                                <ProximityText>
+>                                 <div ref={{current:null}} style={{position:"relative",display:"inline"}}>
+                              ...
+                          ...
+                    ...
+                  ...
+            ...
+          ...
+ 
+[browser] <p> cannot contain a nested <div>.
+See this log for the ancestor stack trace. 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at ProximityText (src/components/ui/ProximityText.tsx:21:9)
+    at Hero (src/components/home/Hero.tsx:86:13)
+    at Home (src\app\page.tsx:26:9)
+  19 |
+  20 |     return (
+> 21 |         <div ref={containerRef} style={{ position: 'relative', display: 'inline' }}>
+     |         ^
+  22 |             <VariableProximity
+  23 |                 label={children}
+  24 |                 className={cn("", className)}

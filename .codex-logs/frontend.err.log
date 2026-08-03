@@ -1,0 +1,776 @@
+[browser] In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <Home>
+                <div className="flex flex-...">
+                  <main className="flex-1">
+                    <Hero>
+                      <section className="relative w...">
+                        <Iridescence>
+                        <div>
+                        <div className="container ...">
+                          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} ...>
+                            <div className="space-y-6" style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                              <h1>
+>                             <p
+>                               className="mt-6 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed text-foreground/90"
+>                             >
+                                <ProximityText>
+>                                 <div ref={{current:null}} style={{position:"relative",display:"inline"}}>
+                              ...
+                          ...
+                    ...
+            ...
+          ...
+ 
+[browser] <p> cannot contain a nested <div>.
+See this log for the ancestor stack trace. 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at ProximityText (src/components/ui/ProximityText.tsx:21:9)
+    at Hero (src/components/home/Hero.tsx:78:13)
+    at Home (src\app\page.tsx:22:9)
+  19 |
+  20 |     return (
+> 21 |         <div ref={containerRef} style={{ position: 'relative', display: 'inline' }}>
+     |         ^
+  22 |             <VariableProximity
+  23 |                 label={children}
+  24 |                 className={cn("", className)}
+[browser] In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <Home>
+                <div className="flex flex-...">
+                  <main className="flex-1">
+                    <Hero>
+                      <section className="relative w...">
+                        <Iridescence>
+                        <div>
+                        <div className="container ...">
+                          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} ...>
+                            <div className="space-y-6" style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                              <h1>
+>                             <p
+>                               className="mt-6 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed text-foreground/90"
+>                             >
+                                <ProximityText>
+>                                 <div ref={{current:null}} style={{position:"relative",display:"inline"}}>
+                              ...
+                          ...
+                    ...
+            ...
+          ...
+ 
+[browser] <p> cannot contain a nested <div>.
+See this log for the ancestor stack trace. 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at ProximityText (src/components/ui/ProximityText.tsx:21:9)
+    at Hero (src/components/home/Hero.tsx:78:13)
+    at Home (src\app\page.tsx:22:9)
+  19 |
+  20 |     return (
+> 21 |         <div ref={containerRef} style={{ position: 'relative', display: 'inline' }}>
+     |         ^
+  22 |             <VariableProximity
+  23 |                 label={children}
+  24 |                 className={cn("", className)}
+[browser] Image with src "/placeholders/lab-vision-ai.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/project-fda.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/lab-edge-ai.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/lab-simulation.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  [90m1 |[0m
+  [90m2 |[0m [36mimport[0m [33mReact[0m [36mfrom[0m [32m'react'[0m;
+[31m[1m>[0m [90m3 |[0m [36mimport[0m { [33mHero[0m } [36mfrom[0m [32m'@/components/home/Hero'[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4 |[0m [36mimport[0m { [33mVision[0m } [36mfrom[0m [32m'@/components/home/Vision'[0m;
+  [90m5 |[0m [36mimport[0m { [33mDomains[0m } [36mfrom[0m [32m'@/components/home/Domains'[0m;
+  [90m6 |[0m [36mimport[0m { getBlogPosts, [36mtype[0m [33mPost[0m } [36mfrom[0m [32m'@/lib/blog'[0m;
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] Uncaught Error: ./src/app/page.tsx:3:1
+Module not found: Can't resolve '@/components/home/Hero'
+  1 |
+  2 | import React from 'react';
+> 3 | import { Hero } from '@/components/home/Hero';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { Vision } from '@/components/home/Vision';
+  5 | import { Domains } from '@/components/home/Domains';
+  6 | import { getBlogPosts, type Post } from '@/lib/blog';
+
+Import map: aliased to relative './src/components/home/Hero' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./src/app/page.tsx:3:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./src/app/page.tsx:3:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <Home>
+                <div className="flex flex-...">
+                  <main className="flex-1">
+                    <Hero>
+                      <section className="relative f...">
+                        <Iridescence>
+                        <UniverseBackground>
+                        <div>
+                        <div className="container ...">
+                          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} ...>
+                            <div className="mx-auto ma..." style={{opacity:0, ...}} ...>
+                              <div>
+                              <h1>
+>                             <p
+>                               className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-foreground/90 md:text-xl"
+>                             >
+                                <ProximityText>
+>                                 <div ref={{current:null}} style={{position:"relative",display:"inline"}}>
+                              ...
+                          ...
+                    ...
+            ...
+          ...
+ 
+[browser] <p> cannot contain a nested <div>.
+See this log for the ancestor stack trace. 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at ProximityText (src/components/ui/ProximityText.tsx:21:9)
+    at Hero (src/components/home/Hero.tsx:84:13)
+    at Home (src\app\page.tsx:24:9)
+  19 |
+  20 |     return (
+> 21 |         <div ref={containerRef} style={{ position: 'relative', display: 'inline' }}>
+     |         ^
+  22 |             <VariableProximity
+  23 |                 label={children}
+  24 |                 className={cn("", className)}
+[browser] In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <Home>
+                <div className="flex flex-...">
+                  <main className="flex-1">
+                    <Hero>
+                      <section className="relative f...">
+                        <Iridescence>
+                        <UniverseBackground>
+                        <div>
+                        <div className="container ...">
+                          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} ...>
+                            <div className="mx-auto ma..." style={{opacity:0, ...}} ...>
+                              <div>
+                              <h1>
+>                             <p
+>                               className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-foreground/90 md:text-xl"
+>                             >
+                                <ProximityText>
+>                                 <div ref={{current:null}} style={{position:"relative",display:"inline"}}>
+                              ...
+                          ...
+                    ...
+            ...
+          ...
+ 
+[browser] <p> cannot contain a nested <div>.
+See this log for the ancestor stack trace. 
+[browser] Image with src "/placeholders/lab-vision-ai.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/project-fda.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/lab-edge-ai.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/lab-simulation.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <Home>
+                <div className="flex flex-...">
+                  <main className="flex-1">
+                    <Hero>
+                      <section className="relative f...">
+                        <Iridescence>
+                        <UniverseBackground>
+                        <div>
+                        <div className="container ...">
+                          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} ...>
+                            <div className="mx-auto ma..." style={{opacity:0, ...}} ...>
+                              <div>
+                              <h1>
+>                             <p
+>                               className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-foreground/90 md:text-xl"
+>                             >
+                                <ProximityText>
+>                                 <div ref={{current:null}} style={{position:"relative",display:"inline"}}>
+                              ...
+                          ...
+                    ...
+            ...
+          ...
+ 
+[browser] <p> cannot contain a nested <div>.
+See this log for the ancestor stack trace. 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at ProximityText (src/components/ui/ProximityText.tsx:21:9)
+    at Hero (src/components/home/Hero.tsx:84:13)
+    at Home (src\app\page.tsx:24:9)
+  19 |
+  20 |     return (
+> 21 |         <div ref={containerRef} style={{ position: 'relative', display: 'inline' }}>
+     |         ^
+  22 |             <VariableProximity
+  23 |                 label={children}
+  24 |                 className={cn("", className)}
+[browser] Image with src "/placeholders/lab-vision-ai.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/project-fda.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/lab-edge-ai.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/lab-simulation.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <Home>
+                <div className="flex flex-...">
+                  <main className="flex-1">
+                    <Hero>
+                      <section className="relative f...">
+                        <Iridescence>
+                        <UniverseBackground>
+                        <div>
+                        <div className="container ...">
+                          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} ...>
+                            <div className="mx-auto ma..." style={{opacity:0, ...}} ...>
+                              <div>
+                              <h1>
+>                             <p
+>                               className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-foreground/90 md:text-xl"
+>                             >
+                                <ProximityText>
+>                                 <div ref={{current:null}} style={{position:"relative",display:"inline"}}>
+                              ...
+                          ...
+                    ...
+            ...
+          ...
+ 
+[browser] <p> cannot contain a nested <div>.
+See this log for the ancestor stack trace. 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at ProximityText (src/components/ui/ProximityText.tsx:21:9)
+    at Hero (src/components/home/Hero.tsx:84:13)
+    at Home (src\app\page.tsx:25:9)
+  19 |
+  20 |     return (
+> 21 |         <div ref={containerRef} style={{ position: 'relative', display: 'inline' }}>
+     |         ^
+  22 |             <VariableProximity
+  23 |                 label={children}
+  24 |                 className={cn("", className)}
+[browser] In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <Home>
+                <div className="flex flex-...">
+                  <main className="flex-1">
+                    <Hero>
+                      <section className="relative f...">
+                        <Iridescence>
+                        <UniverseBackground>
+                        <div>
+                        <div className="container ...">
+                          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} ...>
+                            <div className="mx-auto ma..." style={{opacity:0, ...}} ...>
+                              <div>
+                              <h1>
+>                             <p
+>                               className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-foreground/90 md:text-xl"
+>                             >
+                                <ProximityText>
+>                                 <div ref={{current:null}} style={{position:"relative",display:"inline"}}>
+                              ...
+                          ...
+                    ...
+            ...
+          ...
+ 
+[browser] <p> cannot contain a nested <div>.
+See this log for the ancestor stack trace. 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at ProximityText (src/components/ui/ProximityText.tsx:21:9)
+    at Hero (src/components/home/Hero.tsx:84:13)
+    at Home (src\app\page.tsx:25:9)
+  19 |
+  20 |     return (
+> 21 |         <div ref={containerRef} style={{ position: 'relative', display: 'inline' }}>
+     |         ^
+  22 |             <VariableProximity
+  23 |                 label={children}
+  24 |                 className={cn("", className)}
+[browser] Image with src "/placeholders/lab-vision-ai.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/project-fda.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/lab-edge-ai.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/lab-simulation.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[browser] In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <Home>
+                <div className="flex flex-...">
+                  <main className="flex-1">
+                    <Hero>
+                      <section className="relative f...">
+                        <Iridescence>
+                        <UniverseBackground>
+                        <div>
+                        <div className="container ...">
+                          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} ...>
+                            <div className="mx-auto ma..." style={{opacity:0, ...}} ...>
+                              <div>
+                              <h1>
+>                             <p
+>                               className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-foreground/90 md:text-xl"
+>                             >
+                                <ProximityText>
+>                                 <div ref={{current:null}} style={{position:"relative",display:"inline"}}>
+                              ...
+                          ...
+                    ...
+            ...
+          ...
+ 
+[browser] <p> cannot contain a nested <div>.
+See this log for the ancestor stack trace. 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at ProximityText (file://C:/Users/devp0/OneDrive/Desktop/Nex/PraverseTech/.next/dev/static/chunks/src_09n1sc6._.js:540:214)
+    at Hero (file://C:/Users/devp0/OneDrive/Desktop/Nex/PraverseTech/.next/dev/static/chunks/src_09n1sc6._.js:793:245)
+    at Home (src\app\page.tsx:25:9)
+  23 |     <div className="flex flex-col min-h-screen bg-background">
+  24 |       <main className="flex-1">
+> 25 |         <Hero />
+     |         ^
+  26 |         <section className="relative bg-slate-950 py-0">
+  27 |           <div className="container -mt-8 pb-12 md:-mt-14 md:pb-16">
+  28 |             <NovaGuide
+[browser] Image with src "/placeholders/lab-vision-ai.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/project-fda.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/lab-edge-ai.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/placeholders/lab-simulation.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <Home>
+                <div className="flex flex-...">
+                  <main className="flex-1">
+                    <Hero>
+                      <section className="relative f...">
+                        <Iridescence>
+                        <UniverseBackground>
+                        <div>
+                        <div className="container ...">
+                          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} ...>
+                            <div className="mx-auto ma..." style={{opacity:0, ...}} ...>
+                              <NovaAvatar>
+                              <div>
+                              <h1>
+>                             <p
+>                               className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-foreground/90 md:text-xl"
+>                             >
+                                <ProximityText>
+>                                 <div ref={{current:null}} style={{position:"relative",display:"inline"}}>
+                              ...
+                          ...
+                    ...
+            ...
+          ...
+ 
+[browser] <p> cannot contain a nested <div>.
+See this log for the ancestor stack trace. 
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at ProximityText (src/components/ui/ProximityText.tsx:21:9)
+    at Hero (src/components/home/Hero.tsx:86:13)
+    at Home (src\app\page.tsx:25:9)
+  19 |
+  20 |     return (
+> 21 |         <div ref={containerRef} style={{ position: 'relative', display: 'inline' }}>
+     |         ^
+  22 |             <VariableProximity
+  23 |                 label={children}
+  24 |                 className={cn("", className)}
+[browser] Image with src "/placeholders/lab-vision-ai.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes

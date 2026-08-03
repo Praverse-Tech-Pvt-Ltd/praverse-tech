@@ -33,7 +33,7 @@ const collaborationItems = [
 
 export function Collaborations() {
     return (
-        <AnimatedSection className="relative py-24 md:py-32 overflow-hidden border-t border-border/10" staggerChildren={0.14}>
+        <AnimatedSection id="partner" className="relative py-24 md:py-32 overflow-hidden border-t border-border/10" staggerChildren={0.14}>
             {/* Minimal Background Gradients for depth */}
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-primary/5 via-background to-background" />
             <div className="absolute top-1/4 right-0 -z-10 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full mix-blend-screen opacity-50" />

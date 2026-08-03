@@ -1,0 +1,11 @@
+
+> nextn@0.1.0 dev
+> next dev -p 9003
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:9003
+- Network:       http://192.168.1.6:9003
+- Environments: .env
+✓ Ready in 636ms
+
+ GET / 200 in 1647ms (next.js: 559ms, application-code: 1088ms)

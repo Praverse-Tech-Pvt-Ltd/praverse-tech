@@ -13,6 +13,7 @@ const visionImage = PlaceHolderImages.find((p) => p.id === "lab-vision-ai");
 export function Vision() {
   return (
     <AnimatedSection
+      id="vision"
       className="section-padding bg-muted"
       staggerChildren={0.25}
     >

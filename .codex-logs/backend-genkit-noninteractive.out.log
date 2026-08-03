@@ -1,0 +1,5 @@
+Indexed 0 traces in 0ms in C:\Users\devp0\OneDrive\Desktop\Nex\PraverseTech\.genkit\traces_idx
+Telemetry API running on http://localhost:4033
+[32m[1mProject root:[22m[39m C:\Users\devp0\OneDrive\Desktop\Nex\PraverseTech
+[32m[1mGenkit Developer UI:[22m[39m http://localhost:4000
+[dotenv@17.2.3] injecting env (4) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
